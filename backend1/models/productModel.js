@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
+<<<<<<< HEAD:backend1/models/productModel.js
 const productSchema = mongoose.Schema({
+=======
+const porductSchema = mongoose.Schema({
+>>>>>>> parent of 8f1cc2e (frontend):backend/models/productModel.js
 	name: {
 		type: String,
 		required: [true, "Please Enter product Name"],
@@ -66,12 +70,15 @@ const productSchema = mongoose.Schema({
 			},
 		},
 	],
+<<<<<<< HEAD:backend1/models/productModel.js
 
 	user: {
 		type: mongoose.Schema.ObjectId,
 		ref: "User",
 		required: true,
 	},
+=======
+>>>>>>> parent of 8f1cc2e (frontend):backend/models/productModel.js
 	createdAt: {
 		type: Date,
 		default: Date.now,

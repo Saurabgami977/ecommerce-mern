@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"name": "ecommerce",
 	"version": "1.0.0",
 	"description": "",
@@ -30,22 +29,4 @@
 		"stripe": "^8.174.0",
 		"validator": "^13.6.0"
 	}
-=======
-  "name": "ecommerce",
-  "version": "1.0.0",
-  "description": "",
-  "main": "backend/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "mongoose": "^6.4.6"
-  }
->>>>>>> parent of 8f1cc2e (frontend)
 }

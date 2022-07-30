@@ -1,5 +1,6 @@
 const express = require("express");
 const {
+<<<<<<< HEAD
   getAllProducts,
   createProduct,
   updateProduct,
@@ -11,10 +12,20 @@ const {
   getAdminProducts,
 } = require("../controllers/productController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
+=======
+	getAllProducts,
+	createProduct,
+	updateProduct,
+	deleteProduct,
+	getProductDetails,
+} = require("../controllers/productController");
+const { isAuthenticatedUser, authorizedRoles } = require("../middleware/auth");
+>>>>>>> parent of a225816 (copied)
 
 const router = express.Router();
 
 router.route("/products").get(getAllProducts);
+<<<<<<< HEAD
 
 router
   .route("/admin/products")
@@ -37,5 +48,15 @@ router
   .route("/reviews")
   .get(getProductReviews)
   .delete(isAuthenticatedUser, deleteReview);
+=======
+router
+	.route("/products/new")
+	.post(isAuthenticatedUser, authorizedRoles("admin"), createProduct);
+router
+	.route("/products/:id")
+	.put(isAuthenticatedUser, authorizedRoles("admin"), updateProduct)
+	.delete(isAuthenticatedUser, authorizedRoles("admin"), deleteProduct)
+	.get(getProductDetails);
+>>>>>>> parent of a225816 (copied)
 
 module.exports = router;

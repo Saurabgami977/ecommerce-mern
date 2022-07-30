@@ -1,4 +1,5 @@
 const app = require("./app");
+<<<<<<< HEAD
 const cloudinary = require("cloudinary");
 const connectDatabase = require("./config/database");
 
@@ -36,3 +37,37 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+=======
+
+const dotenv = require("dotenv");
+const connectDatabase = require("./config/database");
+
+// Handling uncaught exception
+
+process.on("uncaughtException", (err) => {
+	console.log(`Error: ${err.message}`);
+	console.log(`Shutting down the server due to Uncaught Exception`);
+	process.exit(1);
+});
+
+//Config
+
+dotenv.config({ path: "backend/config/config.env" });
+
+// Connecting to the database
+connectDatabase();
+
+const server = app.listen(process.env.PORT, () => {
+	console.log(`Server is working on http://localhost:${process.env.PORT}`);
+});
+
+// Unhandeled Promise Rejections
+process.on("unhandledRejection", (err) => {
+	console.log(`Error: ${err.message}`);
+	console.log(`Shutting down the server due to unhandled promise rejection`);
+
+	server.close(() => {
+		process.exit(1);
+	});
+});
+>>>>>>> parent of a225816 (copied)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const ErrorHander = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const User = require("../models/userModel");
@@ -275,4 +276,103 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     success: true,
     message: "User Deleted Successfully",
   });
+=======
+const ErrorHandler = require("../utils/errorHandler");
+const catchAsyncError = require("../middleware/catchAsyncError");
+
+const User = require("../models/userModel");
+const sendToken = require("../utils/jwtToken");
+const sendEmail = require("../utils/sendEmail");
+
+// Regsiter a user
+exports.registerUser = catchAsyncError(async (req, res, next) => {
+	const { name, email, password } = req.body;
+
+	const user = await User.create({
+		name,
+		email,
+		password,
+		avatar: { public_id: "this is a sample ID", url: "tempProfileURL" },
+	});
+
+	sendToken(user, 201, res);
+});
+
+// Login User
+exports.loginUser = catchAsyncError(async (req, res, next) => {
+	const { email, password } = req.body;
+
+	//Checking if user has given password and email both or not
+	if (!email || !password) {
+		return next(new ErrorHandler("Please Enter email and password", 400));
+	}
+
+	const user = await User.findOne({ email }).select("+password");
+
+	if (!user) {
+		return next(new ErrorHandler("Invalid email or password", 401));
+	}
+
+	const isPasswordMatched = user.comparePassword(password);
+
+	if (!password) {
+		return next(new ErrorHandler("Invalid email or password", 401));
+	}
+
+	sendTok4en(user, 200, res);
+});
+
+// Logout user
+
+exports.logout = catchAsyncError(async (req, res, next) => {
+	res.cookie("token", null, {
+		expires: new Date(Date.now()),
+		httpOnly: true,
+	});
+
+	res.status(200).json({
+		success: true,
+		message: "Logged out",
+	});
+});
+
+// Forgot password
+exports.forgotPassword = catchAsyncError(async (req, res, next) => {
+	const user = await User.findOne({ email: req.body.email });
+
+	if (!user) {
+		return next(new ErrorHandler("User not found", 404));
+	}
+
+	// Get ResetPasswordToken
+	const resetToken = user.getResetPasswordToken();
+
+	await user.save({ validateBeforeSave: false });
+
+	const resetPasswordUrl = `${req.protocol}://${req.get(
+		"host",
+	)}/api/v1/password/reset/${resetToken}`;
+
+	const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n If you have not requested for this email then, please ignore it`;
+
+	try {
+		await sendEmail({
+			email: user.email,
+			subject: `Ecommerce Password Recovery`,
+			message: message,
+		});
+
+		res.status(200).json({
+			success: true,
+			message: `Email sent to ${user.email} sucessfully`,
+		});
+	} catch (error) {
+		user.resetPasswordToken = undefined;
+		user.resetPasswordExpire = undefined;
+
+		await user.save({ validateBeforeSave: false });
+
+		return next(new ErrorHandler(error.message, 500));
+	}
+>>>>>>> parent of a225816 (copied)
 });

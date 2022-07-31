@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 
 import { CgMouse } from "react-icons/cg";
@@ -7,19 +7,23 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../Layout/MetaData";
 import "./Home.css";
 import Product from "./Product";
-import { getProduct } from "../../store/actions/productAction";
+import { clearErrors, getProduct } from "../../store/actions/productAction";
 import Loader from "../Layout/Loader/Loader";
+import AlertBar from "../Layout/Alert/Alert";
 
 const Home = () => {
 	const dispatch = useDispatch();
+	const [errors, setErrors] = useState();
 	const { loading, error, products } = useSelector((state) => state.products);
 
 	useEffect(() => {
+		setErrors(error);
 		dispatch(getProduct);
 	}, [dispatch]);
 
 	return (
 		<>
+			{errors && <AlertBar type="error" title="Error" description={errors} />},
 			{loading ? (
 				<Loader />
 			) : (

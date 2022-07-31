@@ -35,7 +35,7 @@ const Header = () => {
 	};
 
 	return (
-		<AppBar position="absolute" color="primary">
+		<AppBar position="fixed" color="primary">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
 					<ShoppingBasketIcon

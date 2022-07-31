@@ -6,7 +6,6 @@ import "./App.css";
 import Footer from "./components/Layout/Footer/Footer";
 import Header from "./components/Layout/Header/Header";
 import Home from "./components/Home/Home";
-import Loader from "./components/Layout/Loader/Loader";
 
 function App() {
 	useEffect(() => {
@@ -19,7 +18,7 @@ function App() {
 
 	return (
 		<Router>
-			<Header />
+			{/* <Header /> */}
 			<Routes>
 				<Route path="/" element={<Home />} />
 			</Routes>

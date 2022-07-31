@@ -3,6 +3,7 @@ const ErrorHander = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apifeatures");
 const cloudinary = require("cloudinary");
+const ErrorHandler = require("../utils/errorhander");
 
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
@@ -40,6 +41,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Product
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+	return next(new ErrorHander("sample error", 500));
 	const resultPerPage = 8;
 	const productsCount = await Product.countDocuments();
 
@@ -47,7 +49,7 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
 		.search()
 		.filter();
 
-	let products = await apiFeature.query;
+	let products = await apiFeature.query.clone();
 
 	let filteredProductsCount = products.length;
 

@@ -14,4 +14,5 @@ const API = axios.create({ baseURL: "http://localhost:4000" });
 // 	return req;
 // });
 
-export const fetchPost = (id) => API.get(`/api/v1/products`);
+export const fetchPost = () => API.get(`/api/v1/products`);
+export const fetchPostDetails = (id) => API.get(`/api/v1/product/${id}`);

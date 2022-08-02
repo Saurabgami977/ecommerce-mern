@@ -12,8 +12,8 @@ import App from "./App";
 import theme from "./theme";
 
 const options = {
-	position: positions.MIDDLE,
 	timeout: 5000,
+	position: positions.BOTTOM_CENTER,
 	transition: transitions.SCALE,
 };
 

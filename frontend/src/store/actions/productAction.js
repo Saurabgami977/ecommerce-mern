@@ -1,10 +1,13 @@
-import { fetchPost } from "../../axios";
+import { fetchPost, fetchPostDetails } from "../../axios";
 
 import {
 	ALL_PRODUCT_FAIL,
 	ALL_PRODUCT_REQUEST,
 	ALL_PRODUCT_SUCCESS,
 	CLEAR_ERRORS,
+	PRODUCT_DETAILS_FAIL,
+	PRODUCT_DETAILS_REQUEST,
+	PRODUCT_DETAILS_SUCCESS,
 } from "../constants/productConstants";
 
 export const getProduct = async (dispatch) => {
@@ -17,6 +20,22 @@ export const getProduct = async (dispatch) => {
 		dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
 	} catch (error) {
 		dispatch({ type: ALL_PRODUCT_FAIL, payload: error.response.data.message });
+	}
+};
+
+export const getProductDetails = (id) => async (dispatch) => {
+	dispatch({ type: PRODUCT_DETAILS_REQUEST });
+	try {
+		dispatch({ type: PRODUCT_DETAILS_REQUEST });
+
+		const { data } = await fetchPostDetails(id);
+
+		dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data.product });
+	} catch (error) {
+		dispatch({
+			type: PRODUCT_DETAILS_FAIL,
+			payload: error.response.data.message,
+		});
 	}
 };
 

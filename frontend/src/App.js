@@ -6,6 +6,7 @@ import "./App.css";
 import Footer from "./components/Layout/Footer/Footer";
 import Header from "./components/Layout/Header/Header";
 import Home from "./components/Home/Home";
+import ProductDetails from "./components/Product/ProductDetails.js";
 
 function App() {
 	useEffect(() => {
@@ -18,9 +19,10 @@ function App() {
 
 	return (
 		<Router>
-			{/* <Header /> */}
+			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/product/:id" element={<ProductDetails />} />
 			</Routes>
 			<Footer />
 		</Router>

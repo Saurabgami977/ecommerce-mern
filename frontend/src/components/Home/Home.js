@@ -1,29 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 
 import { CgMouse } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 
 import MetaData from "../Layout/MetaData";
 import "./Home.css";
 import Product from "./Product";
-import { clearErrors, getProduct } from "../../store/actions/productAction";
+import { getProduct } from "../../store/actions/productAction";
 import Loader from "../Layout/Loader/Loader";
-import AlertBar from "../Layout/Alert/Alert";
 
 const Home = () => {
+	const alert = useAlert();
 	const dispatch = useDispatch();
-	const [errors, setErrors] = useState();
 	const { loading, error, products } = useSelector((state) => state.products);
 
 	useEffect(() => {
-		setErrors(error);
+		// if (error) {
+		// 	return alert.error(error);
+		// }
 		dispatch(getProduct);
 	}, [dispatch]);
 
 	return (
 		<>
-			{errors && <AlertBar type="error" title="Error" description={errors} />},
 			{loading ? (
 				<Loader />
 			) : (

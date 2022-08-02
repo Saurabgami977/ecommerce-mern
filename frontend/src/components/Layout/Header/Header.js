@@ -56,7 +56,7 @@ const Header = () => {
 							textDecoration: "none",
 						}}
 					>
-						Ecommerce
+						Saurav Store
 					</Typography>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -114,7 +114,7 @@ const Header = () => {
 							textDecoration: "none",
 						}}
 					>
-						Ecommerce
+						Saurav Store
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page) => (

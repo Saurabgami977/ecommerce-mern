@@ -5,12 +5,10 @@ import {
 	productDetailsReducer,
 	productReducer,
 } from "./store/reducers/productReducer";
-import { searchModalReducer } from "./store/reducers/searchModalReducer";
 
 const reducer = combineReducers({
 	products: productReducer,
 	productDeatails: productDetailsReducer,
-	searchModalStatus: searchModalReducer,
 });
 
 let initialState = {};

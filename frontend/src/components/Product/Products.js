@@ -7,21 +7,23 @@ import Loader from "../Layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import { clearErrors, getProduct } from "../../store/actions/productAction";
 import "./Products.css";
+import { useParams } from "react-router-dom";
 
 const Products = () => {
 	const dispatch = useDispatch();
 	const alert = useAlert();
-	const { products, loading, error, productsCount } = useSelector(
-		(state) => state.products,
-	);
+	const params = useParams();
+	const { products, loading, error } = useSelector((state) => state.products);
+
+	const keyword = params.keyword;
 
 	useEffect(() => {
 		if (error) {
 			alert.error(error);
 			return dispatch(clearErrors);
 		}
-		dispatch(getProduct);
-	}, [dispatch, error, alert]);
+		dispatch(getProduct(keyword));
+	}, [dispatch, error, alert, keyword]);
 
 	return (
 		<>

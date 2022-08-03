@@ -1,3 +1,25 @@
+.Outerbox {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgb(225, 225, 225);
+	box-sizing: border-box;
+}
+
+.Outerbox > h2 {
+	text-align: center;
+	font-family: Roboto;
+	font-size: 1.4vmax;
+	border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+	width: 20vmax;
+	padding: 1vmax;
+	margin: 5vmax auto;
+	color: rgba(0, 0, 0, 0.7);
+}
+
 .searchBox {
 	width: 100vw;
 	max-width: 100%;
@@ -5,12 +27,6 @@
 	justify-content: center;
 	align-items: center;
 
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 100vw;
-	height: 80;
 	box-shadow: 24;
 	padding: 4;
 	border-radius: 6px;
@@ -27,12 +43,12 @@
 	border-radius: 0%;
 	font: 300 1.1vmax cursive;
 	box-sizing: border-box;
-	height: 8%;
+	height: 10;
 }
 
 .searchBox > input[type="submit"] {
 	outline: none;
-	height: 8%;
+	height: 10;
 	border-radius: 0%;
 	background-color: tomato;
 	border: none;

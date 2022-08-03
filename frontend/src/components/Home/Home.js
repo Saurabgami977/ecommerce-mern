@@ -21,7 +21,7 @@ const Home = () => {
 			alert.error(error);
 			return dispatch(clearErrors);
 		}
-		dispatch(getProduct);
+		dispatch(getProduct());
 	}, [alert, dispatch, error]);
 
 	return (

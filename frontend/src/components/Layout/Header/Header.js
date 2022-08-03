@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -16,7 +16,6 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Search from "../../Product/Search";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -153,11 +152,12 @@ const Header = () => {
 							</Button>
 						))}
 					</Box>
-					<Search />
-					<Button color="success" onClick={() => handleSearchModal()}>
-						Search
-						<SearchIcon sx={{ marginRight: "20px", marginLeft: "20px" }} />
-					</Button>
+					<Link to="/search">
+						<Button color="success" onClick={() => handleSearchModal()}>
+							Search
+							<SearchIcon sx={{ marginRight: "20px", marginLeft: "20px" }} />
+						</Button>
+					</Link>
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

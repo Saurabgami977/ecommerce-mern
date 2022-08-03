@@ -23,10 +23,12 @@ function App() {
 		<Router>
 			<Header />
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/product/:id" element={<ProductDetails />} />
-				<Route path="/products" element={<Products />} />
-				<Route path="/search" element={<Search />} />
+				<Route exact path="/" element={<Home />} />
+				<Route exact path="/product/:id" element={<ProductDetails />} />
+				<Route exact path="/products" element={<Products />} />
+				<Route path="/products/:keyword" element={<Products />} />
+
+				<Route exact path="/search" element={<Search />} />
 			</Routes>
 			<Footer />
 		</Router>

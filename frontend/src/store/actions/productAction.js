@@ -10,18 +10,23 @@ import {
 	PRODUCT_DETAILS_SUCCESS,
 } from "../constants/productConstants";
 
-export const getProduct = async (dispatch) => {
-	dispatch({ type: ALL_PRODUCT_REQUEST });
-	try {
+export const getProduct =
+	(keyword = "") =>
+	async (dispatch) => {
 		dispatch({ type: ALL_PRODUCT_REQUEST });
+		try {
+			dispatch({ type: ALL_PRODUCT_REQUEST });
 
-		const { data } = await fetchPost();
+			const { data } = await fetchPost(keyword);
 
-		dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
-	} catch (error) {
-		dispatch({ type: ALL_PRODUCT_FAIL, payload: error.response.data.message });
-	}
-};
+			dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
+		} catch (error) {
+			dispatch({
+				type: ALL_PRODUCT_FAIL,
+				payload: error.response.data.message,
+			});
+		}
+	};
 
 export const getProductDetails = (id) => async (dispatch) => {
 	dispatch({ type: PRODUCT_DETAILS_REQUEST });

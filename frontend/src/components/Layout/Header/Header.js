@@ -57,23 +57,23 @@ const Header = () => {
 					<ShoppingBasketIcon
 						sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
 					/>
-					<Typography
-						variant="h6"
-						noWrap
-						component="a"
-						href="/"
-						sx={{
-							mr: 2,
-							display: { xs: "none", md: "flex" },
-							fontFamily: "monospace",
-							fontWeight: 700,
-							letterSpacing: ".3rem",
-							color: "inherit",
-							textDecoration: "none",
-						}}
-					>
-						Saurav Store
-					</Typography>
+					<Link to="/" style={{ textDecoration: "none" }}>
+						<Typography
+							variant="h6"
+							noWrap
+							component="a"
+							sx={{
+								mr: 2,
+								display: { xs: "none", md: "flex" },
+								fontFamily: "monospace",
+								fontWeight: 700,
+								letterSpacing: ".3rem",
+								color: "white",
+							}}
+						>
+							Saurav Store
+						</Typography>
+					</Link>
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
 							size="large"
@@ -118,24 +118,26 @@ const Header = () => {
 					<ShoppingBasketIcon
 						sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
 					/>
-					<Typography
-						variant="h5"
-						noWrap
-						component="a"
-						href=""
-						sx={{
-							mr: 2,
-							display: { xs: "flex", md: "none" },
-							flexGrow: 1,
-							fontFamily: "monospace",
-							fontWeight: 700,
-							letterSpacing: ".3rem",
-							color: "inherit",
-							textDecoration: "none",
-						}}
-					>
-						Saurav Store
-					</Typography>
+					<Link to="/" style={{ textDecoration: "none" }}>
+						<Typography
+							variant="h5"
+							noWrap
+							component="a"
+							href=""
+							sx={{
+								mr: 2,
+								display: { xs: "flex", md: "none" },
+								flexGrow: 1,
+								fontFamily: "monospace",
+								fontWeight: 700,
+								letterSpacing: ".3rem",
+								color: "white",
+								textDecoration: "none",
+							}}
+						>
+							Saurav Store
+						</Typography>
+					</Link>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page, index) => (
 							<Button
@@ -152,10 +154,12 @@ const Header = () => {
 							</Button>
 						))}
 					</Box>
-					<Link to="/search">
-						<Button color="success" onClick={() => handleSearchModal()}>
+					<Link to="/search" style={{ textDecoration: "none", color: "white" }}>
+						<Button color="secondary" onClick={() => handleSearchModal()}>
 							Search
-							<SearchIcon sx={{ marginRight: "20px", marginLeft: "20px" }} />
+							<SearchIcon
+								sx={{ marginRight: "20px", marginLeft: "20px", color: "white" }}
+							/>
 						</Button>
 					</Link>
 					<Box sx={{ flexGrow: 0 }}>

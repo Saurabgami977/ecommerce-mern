@@ -41,6 +41,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Product
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+	// return next(
+	// 	new ErrorHander("Error on fetching products, Please try again", 500),
+	// );
+
 	const resultPerPage = 8;
 	const productsCount = await Product.countDocuments();
 
@@ -78,8 +82,6 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 // Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
 	const product = await Product.findById(req.params.id);
-
-	return next(new ErrorHander("Error", 500));
 
 	if (!product) {
 		return next(new ErrorHander("Product not found", 404));

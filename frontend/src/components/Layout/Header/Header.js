@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,7 +13,10 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Search from "../../Product/Search";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -23,6 +27,8 @@ const pages = [
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
+	const dispatch = useDispatch();
+
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -39,6 +45,10 @@ const Header = () => {
 
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
+	};
+
+	const handleSearchModal = () => {
+		dispatch({ type: "CHANGE_SEARCH_MODAL_STATUS", payload: true });
 	};
 
 	return (
@@ -65,7 +75,6 @@ const Header = () => {
 					>
 						Saurav Store
 					</Typography>
-
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
 							size="large"
@@ -95,8 +104,8 @@ const Header = () => {
 								display: { xs: "block", md: "none" },
 							}}
 						>
-							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu}>
+							{pages.map((page, index) => (
+								<MenuItem key={index} onClick={handleCloseNavMenu}>
 									<Link
 										to={page.to}
 										style={{ textDecoration: "none", color: "black" }}
@@ -129,9 +138,9 @@ const Header = () => {
 						Saurav Store
 					</Typography>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						{pages.map((page) => (
+						{pages.map((page, index) => (
 							<Button
-								key={page}
+								key={index}
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, color: "white", display: "block" }}
 							>
@@ -144,7 +153,11 @@ const Header = () => {
 							</Button>
 						))}
 					</Box>
-
+					<Search />
+					<Button color="success" onClick={() => handleSearchModal()}>
+						Search
+						<SearchIcon sx={{ marginRight: "20px", marginLeft: "20px" }} />
+					</Button>
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

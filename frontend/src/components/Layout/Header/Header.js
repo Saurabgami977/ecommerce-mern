@@ -12,7 +12,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-const pages = ["Home", "Products", "ABout", "Contact"];
+import { Link } from "react-router-dom";
+
+const pages = [
+	{ name: "Home", to: "/" },
+	{ name: "Products", to: "/products" },
+	{ name: "About", to: "/about" },
+	{ name: "Contact", to: "/contact" },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
@@ -90,7 +97,12 @@ const Header = () => {
 						>
 							{pages.map((page) => (
 								<MenuItem key={page} onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
+									<Link
+										to={page.to}
+										style={{ textDecoration: "none", color: "black" }}
+									>
+										<Typography textAlign="center">{page.name}</Typography>
+									</Link>
 								</MenuItem>
 							))}
 						</Menu>
@@ -123,7 +135,12 @@ const Header = () => {
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, color: "white", display: "block" }}
 							>
-								{page}
+								<Link
+									style={{ textDecoration: "none", color: "white" }}
+									to={page.to}
+								>
+									{page.name}
+								</Link>
 							</Button>
 						))}
 					</Box>

@@ -9,7 +9,10 @@ import { useAlert } from "react-alert";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import ReviewCard from "./ReviewCard.js";
-import { getProductDetails } from "../../store/actions/productAction";
+import {
+	clearErrors,
+	getProductDetails,
+} from "../../store/actions/productAction";
 import "./ProductDetails.css";
 
 const ProductDetails = ({ match }) => {
@@ -23,23 +26,24 @@ const ProductDetails = ({ match }) => {
 
 	useEffect(() => {
 		if (error) {
-			return alert.error(error);
+			alert.error(error);
+			return dispatch(clearErrors);
 		}
 		dispatch(getProductDetails(id));
-	}, [error]);
+	}, [error, alert, dispatch, id]);
 
 	const options = {
 		edit: false,
 		color: "rgba(20,20,20,0.1",
 		activeColot: "tomato",
 		size: window.innerWidth < 600 ? 20 : 25,
-		value: Number(product.rating),
+		value: Number(product && product.rating),
 		isHalf: true,
 	};
 
 	return (
 		<>
-			<MetaData title={product.name} />
+			{product && <MetaData title={product.name} />}
 			{loading ? (
 				<Loader />
 			) : (
@@ -47,7 +51,8 @@ const ProductDetails = ({ match }) => {
 					<div className="ProductDetails">
 						<div className="leftBar">
 							<Carousel className="carousel">
-								{product.images &&
+								{product &&
+									product.images &&
 									product.images.map((image, index) => (
 										<img
 											key={index}
@@ -60,16 +65,16 @@ const ProductDetails = ({ match }) => {
 						</div>
 						<div className="rightBar">
 							<div className="detailsBlock-1">
-								<h2>{product.name}</h2>
-								<p>Product # {product._id}</p>
+								<h2>{product && product.name}</h2>
+								<p>Product # {product && product._id}</p>
 							</div>
 							<div className="detailsBlock-2">
 								<ReactStars {...options} />
-								<span>({product.numOfReviews} Reviews)</span>
+								<span>({product && product.numOfReviews} Reviews)</span>
 							</div>
 							<div className="detailsBlock-3">
 								<h1>
-									$<strong>{product.price}</strong>
+									$<strong>{product && product.price}</strong>
 								</h1>
 								<div className="detailsBlock-3-1">
 									<div className="detailsBlock-3-1-1">
@@ -91,13 +96,17 @@ const ProductDetails = ({ match }) => {
 								</div>
 								<p>
 									Status:{" "}
-									<b className={product.stock < 1 ? "redColor" : "greenColor"}>
-										{product.stock < 1 ? "Out of Stock" : "In Stock"}
+									<b
+										className={
+											product && product.stock < 1 ? "redColor" : "greenColor"
+										}
+									>
+										{product && product.stock < 1 ? "Out of Stock" : "In Stock"}
 									</b>
 								</p>
 							</div>
 							<div className="detailsBlock-4">
-								Description: <p>{product.description}</p>
+								Description: <p>{product && product.description}</p>
 							</div>
 
 							<button className="submitReview"> Submit Review </button>
@@ -106,7 +115,7 @@ const ProductDetails = ({ match }) => {
 				</>
 			)}
 			<h3 className="reviewsHeading">Reviews</h3>
-			{product.reviews && product.reviews[0] ? (
+			{product && product.reviews && product.reviews[0] ? (
 				<div className="reviews">
 					{product.reviews &&
 						product.reviews.map((review, index) => (

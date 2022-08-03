@@ -79,6 +79,8 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
 	const product = await Product.findById(req.params.id);
 
+	return next(new ErrorHander("Error", 500));
+
 	if (!product) {
 		return next(new ErrorHander("Product not found", 404));
 	}

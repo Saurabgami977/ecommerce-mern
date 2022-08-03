@@ -7,8 +7,8 @@ import { useAlert } from "react-alert";
 
 import MetaData from "../Layout/MetaData";
 import "./Home.css";
-import Product from "./Product";
-import { getProduct } from "../../store/actions/productAction";
+import ProductCard from "./ProductCard";
+import { clearErrors, getProduct } from "../../store/actions/productAction";
 import Loader from "../Layout/Loader/Loader";
 
 const Home = () => {
@@ -17,11 +17,12 @@ const Home = () => {
 	const { loading, error, products } = useSelector((state) => state.products);
 
 	useEffect(() => {
-		// if (error) {
-		// 	return alert.error(error);
-		// }
+		if (error) {
+			alert.error(error);
+			return dispatch(clearErrors);
+		}
 		dispatch(getProduct);
-	}, [dispatch]);
+	}, [alert, dispatch, error]);
 
 	return (
 		<>
@@ -46,7 +47,7 @@ const Home = () => {
 					<div className="container" id="container">
 						{products &&
 							products.map((product) => (
-								<Product key={product._id} product={product} />
+								<ProductCard key={product._id} product={product} />
 							))}
 					</div>
 				</>

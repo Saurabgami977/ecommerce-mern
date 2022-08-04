@@ -11,13 +11,13 @@ import {
 } from "../constants/productConstants";
 
 export const getProduct =
-	(keyword = "") =>
+	(keyword = "", currentPage = 1) =>
 	async (dispatch) => {
 		dispatch({ type: ALL_PRODUCT_REQUEST });
 		try {
 			dispatch({ type: ALL_PRODUCT_REQUEST });
 
-			const { data } = await fetchPost(keyword);
+			const { data } = await fetchPost(keyword, currentPage);
 
 			dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
 		} catch (error) {

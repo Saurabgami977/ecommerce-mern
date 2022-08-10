@@ -23,7 +23,12 @@ const pages = [
 	{ name: "About", to: "/about" },
 	{ name: "Contact", to: "/contact" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = [
+	{ name: "Profile", to: "/login" },
+	{ name: "Account", to: "/account" },
+	{ name: "Dashboard", to: "/dashboard" },
+	{ name: "Logout", to: "/logout" },
+];
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -165,7 +170,7 @@ const Header = () => {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+								<Avatar alt="Saurav" src="/static/images/avatar/2.jpg" />
 							</IconButton>
 						</Tooltip>
 						<Menu
@@ -186,7 +191,12 @@ const Header = () => {
 						>
 							{settings.map((setting) => (
 								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">{setting}</Typography>
+									<Link
+										to={setting.to}
+										style={{ textDecoration: "none", color: "black" }}
+									>
+										<Typography textAlign="center">{setting.name}</Typography>
+									</Link>
 								</MenuItem>
 							))}
 						</Menu>

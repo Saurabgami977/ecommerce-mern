@@ -10,6 +10,7 @@ import Loader from "../Layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import { clearErrors, getProduct } from "../../store/actions/productAction";
 import "./Products.css";
+import MetaData from "../Layout/MetaData";
 
 const categories = [
 	"Laptop",
@@ -66,6 +67,7 @@ const Products = () => {
 				<Loader />
 			) : (
 				<>
+					<MetaData title="Products - Saurav Store" />
 					<h2 className="productsHeading">Products</h2>
 					<div className="products">
 						{products &&

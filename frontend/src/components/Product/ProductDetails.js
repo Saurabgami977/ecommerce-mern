@@ -43,11 +43,11 @@ const ProductDetails = ({ match }) => {
 
 	return (
 		<>
-			{product && <MetaData title={product.name} />}
 			{loading ? (
 				<Loader />
 			) : (
 				<>
+					{product && <MetaData title={product.name + `- Saurav Store`} />}
 					<div className="ProductDetails">
 						<div className="leftBar">
 							<Carousel className="carousel">

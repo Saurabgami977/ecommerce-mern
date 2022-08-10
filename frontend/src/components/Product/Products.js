@@ -11,12 +11,25 @@ import ProductCard from "../Home/ProductCard";
 import { clearErrors, getProduct } from "../../store/actions/productAction";
 import "./Products.css";
 
+const categories = [
+	"laptop",
+	"Footwear",
+	"Bottom",
+	"Tops",
+	"Attire",
+	"Accessories",
+	"Others",
+	"Camera",
+	"Smartphones",
+];
+
 const Products = () => {
 	const dispatch = useDispatch();
 	const alert = useAlert();
 	const params = useParams();
 	const [currentPage, setCurrentPage] = useState(1);
 	const [price, setPrice] = useState([0, 25000]);
+	const [category, setCategory] = useState("");
 
 	const {
 		products,
@@ -43,8 +56,8 @@ const Products = () => {
 			alert.error(error);
 			return dispatch(clearErrors);
 		}
-		dispatch(getProduct(keyword, currentPage, price));
-	}, [dispatch, error, alert, keyword, currentPage, price]);
+		dispatch(getProduct(keyword, currentPage, price, category));
+	}, [dispatch, error, alert, keyword, currentPage, price, category]);
 
 	return (
 		<>
@@ -69,7 +82,21 @@ const Products = () => {
 							min={0}
 							max={25000}
 						/>
+
+						<Typography>Category</Typography>
+						<ul className="categoryBox">
+							{categories.map((category) => (
+								<li
+									key={category}
+									className="category-link"
+									onClick={() => setCategory(category)}
+								>
+									{category}
+								</li>
+							))}
+						</ul>
 					</div>
+
 					{resultPerPage < count && (
 						<div className="paginationBox">
 							<Pagination

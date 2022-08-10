@@ -3,7 +3,6 @@ const ErrorHander = require("../utils/errorhander");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apifeatures");
 const cloudinary = require("cloudinary");
-const ErrorHandler = require("../utils/errorhander");
 
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
@@ -41,13 +40,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Product
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
-	// return next(
-	// 	new ErrorHander("Error on fetching products, Please try again", 500),
-	// );
-
 	const resultPerPage = 8;
 	const productsCount = await Product.countDocuments();
 
+	// const apiFeature = new ApiFeatures(Product.find(), req.query).search().filter();
 	const apiFeature = new ApiFeatures(Product.find(), req.query)
 		.search()
 		.filter();

@@ -4,7 +4,7 @@ import "./search.css";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const Search = () => {
+const Search = (notFound = false) => {
 	const navigate = useNavigate();
 	const [keyword, setKeyword] = useState("");
 

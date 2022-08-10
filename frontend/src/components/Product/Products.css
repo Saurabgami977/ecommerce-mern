@@ -14,6 +14,7 @@
 	padding: 0 5vmax;
 	justify-content: center;
 	align-items: center;
+	min-height: 50vh;
 }
 
 .paginationBox {
@@ -93,6 +94,11 @@
 	color: tomato;
 }
 
+.filterBox > fieldset {
+	border: 1px solid rgba(0, 0, 0, 0.215);
+	padding: 0 10px;
+}
+
 @media screen and (max-width: 600px) {
 	.filterBox {
 		width: 20vmax;
@@ -102,5 +108,9 @@
 
 	.page-link {
 		font: 300 1.7vmax "Roboto";
+	}
+
+	.category-link {
+		font: 300 1.4vmax "Roboto";
 	}
 }

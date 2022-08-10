@@ -11,13 +11,19 @@ import {
 } from "../constants/productConstants";
 
 export const getProduct =
-	(keyword = "", currentPage = 1, price = [0, 25000], category) =>
+	(keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>
 	async (dispatch) => {
 		dispatch({ type: ALL_PRODUCT_REQUEST });
 		try {
 			dispatch({ type: ALL_PRODUCT_REQUEST });
 
-			const { data } = await fetchPost(keyword, currentPage, price, category);
+			const { data } = await fetchPost(
+				keyword,
+				currentPage,
+				price,
+				category,
+				ratings,
+			);
 
 			dispatch({ type: ALL_PRODUCT_SUCCESS, payload: data });
 		} catch (error) {

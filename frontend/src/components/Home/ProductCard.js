@@ -19,7 +19,8 @@ const ProductCard = ({ product }) => {
 			<img src={product.images[0].url} alt={product.name} />
 			<p>{product.name}</p>
 			<div>
-				<ReactStars {...options} /> <span>(256 reviews)</span>
+				<ReactStars {...options} />{" "}
+				<span>({product.numOfReviews} reviews)</span>
 			</div>
 			<span>$ {product.price}</span>
 		</Link>

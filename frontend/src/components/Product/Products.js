@@ -12,7 +12,7 @@ import { clearErrors, getProduct } from "../../store/actions/productAction";
 import "./Products.css";
 
 const categories = [
-	"laptop",
+	"Laptop",
 	"Footwear",
 	"Bottom",
 	"Tops",
@@ -30,6 +30,7 @@ const Products = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [price, setPrice] = useState([0, 25000]);
 	const [category, setCategory] = useState("");
+	const [ratings, setRatings] = useState(0);
 
 	const {
 		products,
@@ -56,8 +57,8 @@ const Products = () => {
 			alert.error(error);
 			return dispatch(clearErrors);
 		}
-		dispatch(getProduct(keyword, currentPage, price, category));
-	}, [dispatch, error, alert, keyword, currentPage, price, category]);
+		dispatch(getProduct(keyword, currentPage, price, category, ratings));
+	}, [dispatch, error, alert, keyword, currentPage, price, category, ratings]);
 
 	return (
 		<>
@@ -89,12 +90,25 @@ const Products = () => {
 								<li
 									key={category}
 									className="category-link"
-									onClick={() => setCategory(category)}
+									onClick={() => setCategory(category.toLowerCase())}
 								>
 									{category}
 								</li>
 							))}
 						</ul>
+
+						<fieldset>
+							<Typography component="legend">Ratings Above</Typography>
+							<Slider
+								value={ratings}
+								onChange={(e, newRating) => setRatings(newRating)}
+								aria-labelledby="continuous-slider"
+								min={0}
+								max={5}
+								valueLabelDisplay="auto"
+								size="small"
+							/>
+						</fieldset>
 					</div>
 
 					{resultPerPage < count && (

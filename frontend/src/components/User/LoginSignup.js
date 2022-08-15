@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
+import FaceIcon from "@mui/icons-material/Face";
 
 import "./LoginSignup.css";
 
@@ -13,9 +14,46 @@ const LoginSignup = () => {
 
 	const [loginEmail, setLoginEmail] = useState("");
 	const [loginPassword, setLoginPassword] = useState("");
+	const [avatar, setAvatar] = useState();
+	const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+
+	const [user, setUser] = useState({
+		name: "",
+		email: "",
+		password: "",
+	});
+
+	const { name, email, password } = user;
 
 	const loginSubmit = () => {
-		console.log("Form Submitted");
+		console.log("Login Form Submitted");
+	};
+
+	const registerSubmit = (e) => {
+		e.preventDefault();
+
+		const myForm = new FormData();
+		myForm.set("name", name);
+		myForm.set("email", email);
+		myForm.set("password", password);
+		myForm.set("avatar", avatar);
+
+		console.log("Sign up Form data changed");
+	};
+
+	const registerDataChange = (e) => {
+		if (e.target.name === "avatar") {
+			const reader = new FileReader();
+			reader.onload = () => {
+				if (reader.readyState === 2) {
+					setAvatarPreview(reader.result);
+					setAvatar(reader.result);
+				}
+			};
+			reader.readAsDataURL(e.target.files[0]);
+		} else {
+			setUser({ ...user, [e.target.name]: e.target.value });
+		}
 	};
 
 	const switchTab = (e, tab) => {
@@ -24,14 +62,14 @@ const LoginSignup = () => {
 			switcherTab.current.classList.remove("shiftToRight");
 
 			registerTab.current.classList.remove("shiftToNeutralForm");
-			registerTab.current.classList.remove("shiftToLeft");
+			loginTab.current.classList.remove("shiftToLeft");
 		}
 		if (tab === "register") {
 			switcherTab.current.classList.add("shiftToRight");
 			switcherTab.current.classList.remove("shiftToNeutral");
 
 			registerTab.current.classList.add("shiftToNeutralForm");
-			registerTab.current.classList.add("shiftToLeft");
+			loginTab.current.classList.add("shiftToLeft");
 		}
 	};
 
@@ -74,11 +112,57 @@ const LoginSignup = () => {
 						ref={registerTab}
 						className="signupForm"
 						encType="multipart/form-data"
-						// onSubmit={registerSubmit}
+						onSubmit={registerSubmit}
 					>
-
-
-                    </form>
+						<div className="signupName">
+							<FaceIcon />
+							<input
+								type="text"
+								placeholder="Name"
+								required
+								name="name"
+								value={name}
+								onChange={registerDataChange}
+							/>
+						</div>
+						<div className="signupEmail">
+							<MailOutlineIcon />
+							<input
+								type="email"
+								placeholder="Email"
+								required
+								name="email"
+								value={email}
+								onChange={registerDataChange}
+							/>
+						</div>
+						<div className="signupPassword">
+							<LockOpenIcon />
+							<input
+								type="password"
+								placeholder="Password"
+								required
+								name="password"
+								value={password}
+								onChange={registerDataChange}
+							/>
+						</div>
+						<div id="registerImage">
+							<img src={avatarPreview} alt="Avatar Preview" />
+							<input
+								type="file"
+								name="avatar"
+								accept="image/*"
+								onChange={registerDataChange}
+							/>
+						</div>
+						<input
+							type="button"
+							value="Register"
+							className="signupBtn"
+							// disabled={loading ? true : false}
+						/>
+					</form>
 				</div>
 			</div>
 		</>

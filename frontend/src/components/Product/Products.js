@@ -88,9 +88,9 @@ const Products = () => {
 
 						<Typography>Category</Typography>
 						<ul className="categoryBox">
-							{categories.map((category) => (
+							{categories.map((category, index) => (
 								<li
-									key={category}
+									key={(category, index)}
 									className="category-link"
 									onClick={() => setCategory(category.toLowerCase())}
 								>

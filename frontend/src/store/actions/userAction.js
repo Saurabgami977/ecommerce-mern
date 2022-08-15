@@ -24,19 +24,20 @@ export const login = (email, password) => async (dispatch) => {
 	}
 };
 
-export const register = (userData) => async (dispatch) => {
-	try {
-		dispatch({ type: REGISTER_REQUEST });
-
-		const { data } = await registerAPI(userData);
-		dispatch({ type: REGISTER_SUCCESS, payload: data.user });
-	} catch (error) {
-		dispatch({
-			type: REGISTER_FAIL,
-			payload: error.response.data.message,
-		});
-	}
-};
+export const register =
+	({ name, email, password, avatar }) =>
+	async (dispatch) => {
+		try {
+			dispatch({ type: REGISTER_REQUEST });
+			const { data } = await registerAPI({ name, email, password, avatar });
+			dispatch({ type: REGISTER_SUCCESS, payload: data.user });
+		} catch (error) {
+			dispatch({
+				type: REGISTER_FAIL,
+				payload: error.response.data.message,
+			});
+		}
+	};
 
 export const clearErrors = () => async (dispatch) => {
 	dispatch({ type: CLEAR_ERRORS });

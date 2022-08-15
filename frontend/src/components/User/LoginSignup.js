@@ -46,12 +46,11 @@ const LoginSignup = () => {
 		e.preventDefault();
 
 		const myForm = new FormData();
-		myForm.set("name", name);
-		myForm.set("email", email);
-		myForm.set("password", password);
-		myForm.set("avatar", avatar);
-
-		dispatch(register(myForm));
+		myForm.append("name", name);
+		myForm.append("email", email);
+		myForm.append("password", password);
+		myForm.append("avatar", avatar);
+		dispatch(register({ name, email, password, avatar }));
 	};
 
 	const registerDataChange = (e) => {
@@ -190,7 +189,7 @@ const LoginSignup = () => {
 									/>
 								</div>
 								<input
-									type="button"
+									type="submit"
 									value="Register"
 									className="signupBtn"
 									disabled={loading ? true : false}

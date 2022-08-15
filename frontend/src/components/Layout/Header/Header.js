@@ -66,7 +66,6 @@ const Header = () => {
 						<Typography
 							variant="h6"
 							noWrap
-							component="a"
 							sx={{
 								mr: 2,
 								display: { xs: "none", md: "flex" },
@@ -127,8 +126,6 @@ const Header = () => {
 						<Typography
 							variant="h5"
 							noWrap
-							component="a"
-							href=""
 							sx={{
 								mr: 2,
 								display: { xs: "flex", md: "none" },
@@ -189,8 +186,8 @@ const Header = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
+							{settings.map((setting, index) => (
+								<MenuItem key={index} onClick={handleCloseUserMenu}>
 									<Link
 										to={setting.to}
 										style={{ textDecoration: "none", color: "black" }}

@@ -22,8 +22,12 @@ export const loginAPI = (email, password) =>
 
 const registerConfig = { headers: { "Content-Type": "multipart/form-data" } };
 
-export const registerAPI = (name, email, password) =>
-	API.post("/api/v1/register", { name, email, password }, registerConfig);
+export const registerAPI = ({ name, email, password, avatar }) =>
+	API.post(
+		"/api/v1/register",
+		{ name, email, password, avatar },
+		registerConfig,
+	);
 export const logout = () => API.post("/api/v1/logout");
 export const addToCart = (productId) => API.post("/api/v1/cart", { productId });
 export const getCart = () => API.get("/api/v1/cart");

@@ -17,6 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import { logoutUser } from "../../../store/actions/userAction";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -63,8 +64,8 @@ const Header = () => {
 	const orders = () => {
 		navigate("/orders");
 	};
-	const logoutUser = () => {
-		// dispatch(logout());
+	const logout = () => {
+		dispatch(logoutUser());
 		alert.success("Logged out successfully");
 	};
 
@@ -73,7 +74,7 @@ const Header = () => {
 	const LoggedInUserSettings = [
 		{ name: "Profile", to: "/account", func: account },
 		{ name: "Orders", to: "/orders", func: orders },
-		{ name: "Logout", to: "/logout", func: logoutUser },
+		{ name: "Logout", to: "/logout", func: logout },
 	];
 
 	if (user?.role === "admin") {

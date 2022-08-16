@@ -40,10 +40,11 @@ export const registerAPI = ({ name, email, password, avatar }) =>
 	);
 
 // LOAD USER FROM TOKEN
-
 export const loadUserApi = () => API.get("/api/v1/me");
 
-export const logout = () => API.post("/api/v1/logout");
+// LOGOUT USER
+export const logoutUserAPI = () => API.get("/api/v1/logout");
+
 export const addToCart = (productId) => API.post("/api/v1/cart", { productId });
 export const getCart = () => API.get("/api/v1/cart");
 export const removeFromCart = (productId) =>

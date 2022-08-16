@@ -9,9 +9,11 @@ import {
 	LOAD_USER_REQUEST,
 	LOAD_USER_SUCCESS,
 	LOAD_USER_FAIL,
+	LOGOUT_SUCCESS,
+	LOGOUT_FAIL,
 } from "../constants/userConstant";
 
-import { loadUserApi, loginAPI, registerAPI } from "../../axios";
+import { loadUserApi, loginAPI, logoutUserAPI, registerAPI } from "../../axios";
 
 // LOGIN USER
 export const login = (email, password) => async (dispatch) => {
@@ -54,6 +56,19 @@ export const loadUser = () => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: LOAD_USER_FAIL,
+			payload: error.response.data.message,
+		});
+	}
+};
+
+// Logout User
+export const logoutUser = () => async (dispatch) => {
+	try {
+		await logoutUserAPI();
+		dispatch({ type: LOGOUT_SUCCESS });
+	} catch (error) {
+		dispatch({
+			type: LOGOUT_FAIL,
 			payload: error.response.data.message,
 		});
 	}

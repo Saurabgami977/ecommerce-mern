@@ -10,9 +10,15 @@ const errorMiddleware = require("./middleware/error");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
+
+const corsOptions = {
+	origin: "http://localhost:3000",
+	credentials: true, //access-control-allow-credentials:true
+	optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Route imports
 const products = require("./routes/productRoute");

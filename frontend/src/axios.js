@@ -1,7 +1,11 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:4000" });
+const API = axios.create({
+	baseURL: "http://localhost:4000",
+	withCredentials: true,
+});
 
+// FETCHING ALL POSTS
 export const fetchPost = (keyword, currentPage, price, category, ratings) => {
 	if (category) {
 		return API.get(
@@ -13,21 +17,32 @@ export const fetchPost = (keyword, currentPage, price, category, ratings) => {
 		`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gt]=${price[0]}&price[lt]=${price[1]}&ratings[gt]=${ratings}`,
 	);
 };
+
+// FETCHING POST BY ID
 export const fetchPostDetails = (id) => API.get(`/api/v1/product/${id}`);
 
+// CONFIG FOR POST REQUEST
 const config = { headers: { "Content-Type": "application/json" } };
 
+// LOGIN USER
 export const loginAPI = (email, password) =>
 	API.post("/api/v1/login", { email, password }, config);
 
+// CONFIG FOR REGESTERING USER
 const registerConfig = { headers: { "Content-Type": "multipart/form-data" } };
 
+// REGESTER USER
 export const registerAPI = ({ name, email, password, avatar }) =>
 	API.post(
 		"/api/v1/register",
 		{ name, email, password, avatar },
 		registerConfig,
 	);
+
+// LOAD USER FROM TOKEN
+
+export const loadUserApi = () => API.get("/api/v1/me");
+
 export const logout = () => API.post("/api/v1/logout");
 export const addToCart = (productId) => API.post("/api/v1/cart", { productId });
 export const getCart = () => API.get("/api/v1/cart");

@@ -10,6 +10,9 @@ import ProductDetails from "./components/Product/ProductDetails.js";
 import Products from "./components/Product/Products.js";
 import Search from "./components/Product/Search.js";
 import LoginSignup from "./components/User/LoginSignup";
+import "./store";
+import store from "./store";
+import { loadUser } from "./store/actions/userAction";
 
 function App() {
 	useEffect(() => {
@@ -18,7 +21,8 @@ function App() {
 				families: ["Roboto", "Droidsans", "Chilanka"],
 			},
 		});
-	});
+		store.dispatch(loadUser());
+	}, []);
 
 	return (
 		<Router>

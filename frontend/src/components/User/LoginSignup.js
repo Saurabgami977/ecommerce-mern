@@ -46,10 +46,10 @@ const LoginSignup = () => {
 		e.preventDefault();
 
 		const myForm = new FormData();
-		myForm.append("name", name);
-		myForm.append("email", email);
-		myForm.append("password", password);
-		myForm.append("avatar", avatar);
+		myForm.set("name", name);
+		myForm.set("email", email);
+		myForm.set("password", password);
+		myForm.set("avatar", avatar);
 		dispatch(register({ name, email, password, avatar }));
 	};
 

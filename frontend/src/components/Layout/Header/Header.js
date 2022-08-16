@@ -14,8 +14,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -23,15 +24,13 @@ const pages = [
 	{ name: "About", to: "/about" },
 	{ name: "Contact", to: "/contact" },
 ];
-const settings = [
-	{ name: "Profile", to: "/login" },
-	{ name: "Account", to: "/account" },
-	{ name: "Dashboard", to: "/dashboard" },
-	{ name: "Logout", to: "/logout" },
-];
 
 const Header = () => {
 	const dispatch = useDispatch();
+	const alert = useAlert();
+	const navigate = useNavigate();
+
+	const { isAuthenticated, user } = useSelector((state) => state.userReducer);
 
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
@@ -54,6 +53,32 @@ const Header = () => {
 	const handleSearchModal = () => {
 		dispatch({ type: "CHANGE_SEARCH_MODAL_STATUS", payload: true });
 	};
+
+	const loginUser = () => {
+		navigate("/login");
+	};
+	const account = () => {
+		navigate("/account");
+	};
+	const orders = () => {
+		navigate("/orders");
+	};
+	const logoutUser = () => {
+		// dispatch(logout());
+		alert.success("Logged out successfully");
+	};
+
+	const settings = [{ name: "Login", to: "/login", func: loginUser }];
+
+	const LoggedInUserSettings = [
+		{ name: "Profile", to: "/account", func: account },
+		{ name: "Orders", to: "/orders", func: orders },
+		{ name: "Logout", to: "/logout", func: logoutUser },
+	];
+
+	if (user?.role === "admin") {
+		LoggedInUserSettings.unshift({ name: "Dashboard", to: "/dashboard" });
+	}
 
 	return (
 		<AppBar position="fixed" color="primary">
@@ -164,10 +189,14 @@ const Header = () => {
 							/>
 						</Button>
 					</Link>
+					{/* {console.log(user?.avatar?.url)} */}
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Saurav" src="/static/images/avatar/2.jpg" />
+								<Avatar
+									alt="Saurav"
+									src={user?.avatar?.url || "/static/images/avatar/2.jpg"}
+								/>
 							</IconButton>
 						</Tooltip>
 						<Menu
@@ -186,16 +215,27 @@ const Header = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting, index) => (
-								<MenuItem key={index} onClick={handleCloseUserMenu}>
-									<Link
-										to={setting.to}
-										style={{ textDecoration: "none", color: "black" }}
-									>
-										<Typography textAlign="center">{setting.name}</Typography>
-									</Link>
-								</MenuItem>
-							))}
+							{isAuthenticated
+								? LoggedInUserSettings.map((setting, index) => (
+										<MenuItem key={index} onClick={handleCloseUserMenu}>
+											<Link
+												to={setting.to}
+												style={{ textDecoration: "none", color: "black" }}
+												onClick={setting.func}
+											>
+												<Typography textAlign="center">
+													{setting.name}
+												</Typography>
+											</Link>
+										</MenuItem>
+								  ))
+								: settings.map((setting, index) => (
+										<MenuItem key={index} onClick={handleCloseUserMenu}>
+											<Typography textAlign="center" onClick={setting.func}>
+												{setting.name}
+											</Typography>
+										</MenuItem>
+								  ))}
 						</Menu>
 					</Box>
 				</Toolbar>

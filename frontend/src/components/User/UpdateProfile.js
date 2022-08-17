@@ -36,17 +36,20 @@ const UpdateProfile = () => {
 		myForm.set("name", name);
 		myForm.set("email", email);
 		myForm.set("avatar", avatar);
+
 		dispatch(updateProfile({ name, email, avatar }));
 	};
 
 	const updateProfileDataChange = (e) => {
 		const reader = new FileReader();
+
 		reader.onload = () => {
 			if (reader.readyState === 2) {
 				setAvatarPreview(reader.result);
 				setAvatar(reader.result);
 			}
 		};
+
 		reader.readAsDataURL(e.target.files[0]);
 	};
 
@@ -61,7 +64,6 @@ const UpdateProfile = () => {
 			dispatch(clearErrors());
 		}
 		if (isUpdated === true) {
-			console.log(isUpdated);
 			alert.success("Profile updated successfully");
 			dispatch(loadUser());
 			navigate("/account");
@@ -81,6 +83,7 @@ const UpdateProfile = () => {
 							<h2 className="updateProfileHeading">Update Profile</h2>
 							<form
 								className="updateProfileForm"
+								id="updateProfileForm"
 								encType="multipart/form-data"
 								onSubmit={updateProfileSubmit}
 							>
@@ -117,7 +120,7 @@ const UpdateProfile = () => {
 								</div>
 								<input
 									type="submit"
-									value="Update Profile"
+									value="Update"
 									className="updateProfileBtn"
 									disabled={loading ? true : false}
 								/>

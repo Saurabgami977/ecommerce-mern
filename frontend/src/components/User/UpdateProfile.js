@@ -11,8 +11,11 @@ import "./UpdateProfile.css";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import { loadUser } from "../../store/actions/userAction";
-import { updateProfile, clearErrors } from "../../store/actions/profileAction";
-import { UPDATE_PROFILE_RESET } from "../../store/constants/profileConstant";
+import {
+	updateProfile,
+	clearErrors,
+} from "../../store/actions/updateProfileAction";
+import { UPDATE_PROFILE_RESET } from "../../store/constants/updateProfileConstant";
 
 const UpdateProfile = () => {
 	const dispatch = useDispatch();

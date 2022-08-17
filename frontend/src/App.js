@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
+import { useDispatch } from "react-redux";
 
 import "./App.css";
-import store from "./store";
 import Footer from "./components/Layout/Footer/Footer";
 import Header from "./components/Layout/Header/Header";
 import Home from "./components/Home/Home";
@@ -16,16 +16,18 @@ import UpdateProfile from "./components/User/UpdateProfile.js";
 import { loadUser } from "./store/actions/userAction";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdatePassword from "./components/User/UpdatePassword";
+import ForgotPassword from "./components/User/ForgotPassword.js";
 
 function App() {
+	const dispatch = useDispatch();
 	useEffect(() => {
 		WebFont.load({
 			google: {
 				families: ["Roboto", "Droidsans", "Chilanka"],
 			},
 		});
-		store.dispatch(loadUser());
-	}, []);
+		dispatch(loadUser());
+	}, [dispatch]);
 
 	return (
 		<Router>
@@ -62,6 +64,7 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
+				<Route exact path="/password/forgot" element={<ForgotPassword />} />
 				<Route exact path="/search" element={<Search />} />
 				<Route exact path="/login" element={<LoginSignup />} />
 			</Routes>

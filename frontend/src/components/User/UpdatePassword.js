@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import Lock from "@mui/icons-material/Lock";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
@@ -93,6 +93,7 @@ const UpdatePassword = () => {
 										onChange={(e) => setConfirmPassword(e.target.value)}
 									/>
 								</div>
+								<Link to="/password/forgot">Forget Password </Link>
 								<input
 									type="submit"
 									value="Change"

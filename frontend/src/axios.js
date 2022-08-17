@@ -33,7 +33,11 @@ const registerConfig = { headers: { "Content-Type": "multipart/form-data" } };
 
 // REGESTER USER
 export const registerAPI = ({ name, email, password, avatar }) =>
-	API.post("/api/v1/register", { name, email, password, avatar }, config);
+	API.post(
+		"/api/v1/register",
+		{ name, email, password, avatar },
+		registerConfig,
+	);
 
 // LOAD USER FROM TOKEN
 export const loadUserApi = () => API.get("/api/v1/me");
@@ -47,7 +51,11 @@ export const updateUserAPI = (userData) =>
 
 // Update Password
 export const updatePasswordAPI = (passwords) =>
-	API.put("/api/v1/password/update", passwords, registerConfig);
+	API.put("/api/v1/password/update", passwords, config);
+
+// Forgot Password
+export const forgotPasswordAPI = (email) =>
+	API.post("/api/v1/password/forgot", email, config);
 
 export const addToCart = (productId) => API.post("/api/v1/cart", { productId });
 export const getCart = () => API.get("/api/v1/cart");

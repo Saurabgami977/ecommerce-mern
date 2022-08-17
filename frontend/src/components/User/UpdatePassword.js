@@ -56,11 +56,10 @@ const UpdatePassword = () => {
 					<MetaData title="Change Password" />
 					<div className="updatePasswordContainer">
 						<div className="updatePasswordBox">
-							<h2 className="updatePasswordHeading">Update Profile</h2>
+							<h2 className="updatePasswordHeading">Change Password</h2>
 							<form
 								className="updatePasswordForm"
 								id="updatePasswordForm"
-								encType="multipart/form-data"
 								onSubmit={updatePasswordSubmit}
 							>
 								<div className="loginPassword">

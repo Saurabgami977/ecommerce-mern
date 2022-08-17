@@ -7,8 +7,12 @@ import { useAlert } from "react-alert";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import "./ForgotPassword.css";
-import { forgotPassword } from "../../store/actions/updateProfileAction";
+import {
+	clearErrors,
+	forgotPassword,
+} from "../../store/actions/updateProfileAction";
 import Loader from "../Layout/Loader/Loader";
+import MetaData from "../Layout/MetaData";
 
 const ForgotPassword = () => {
 	const dispatch = useDispatch();
@@ -32,6 +36,7 @@ const ForgotPassword = () => {
 		}
 		if (error) {
 			alert.info(error);
+			dispatch(clearErrors());
 		}
 	}, [error, success, message, alert]);
 
@@ -41,8 +46,11 @@ const ForgotPassword = () => {
 				<Loader />
 			) : (
 				<>
+					<MetaData title="Forgot Password " />
 					<div className="resetPasswordContainer">
 						<div className="resetPasswordBox">
+							<h2 className="forogtPasswordHeading">Forgot Password</h2>
+
 							<form className="resetPasswordForm" onSubmit={resetPassword}>
 								<div className="resetPasswordEmail">
 									<MailOutlineIcon />

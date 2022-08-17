@@ -57,6 +57,14 @@ export const updatePasswordAPI = (passwords) =>
 export const forgotPasswordAPI = (email) =>
 	API.post("/api/v1/password/forgot", email, config);
 
+// Reset Password
+export const resetPasswordAPI = (token, password, confirmPassword) =>
+	API.put(
+		`/api/v1/password/reset/${token}`,
+		{ password, confirmPassword },
+		config,
+	);
+
 export const addToCart = (productId) => API.post("/api/v1/cart", { productId });
 export const getCart = () => API.get("/api/v1/cart");
 export const removeFromCart = (productId) =>

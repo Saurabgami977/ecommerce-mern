@@ -9,12 +9,16 @@ import {
 	FORGOT_PASSWORD_REQUEST,
 	FORGOT_PASSWORD_SUCCESS,
 	FORGOT_PASSWORD_FAIL,
+	RESET_PASSWORD_REQUEST,
+	RESET_PASSWORD_SUCCESS,
+	RESET_PASSWORD_FAIL,
 } from "../constants/updateProfileConstant";
 
 import {
 	forgotPasswordAPI,
 	updatePasswordAPI,
 	updateUserAPI,
+	resetPasswordAPI,
 } from "../../axios";
 
 // Update Profile
@@ -45,7 +49,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
 	}
 };
 
-// Update Password
+// Forgot Password
 export const forgotPassword = (email) => async (dispatch) => {
 	try {
 		dispatch({ type: FORGOT_PASSWORD_REQUEST });
@@ -58,6 +62,21 @@ export const forgotPassword = (email) => async (dispatch) => {
 		});
 	}
 };
+
+// Reset Password
+export const resetPassword =
+	(token, password, confirmPassword) => async (dispatch) => {
+		try {
+			dispatch({ type: RESET_PASSWORD_REQUEST });
+			const { data } = await resetPasswordAPI(token, password, confirmPassword);
+			dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
+		} catch (error) {
+			dispatch({
+				type: RESET_PASSWORD_FAIL,
+				payload: error.response.data.message,
+			});
+		}
+	};
 
 // CLEAR ERRORS
 export const clearErrors = () => async (dispatch) => {

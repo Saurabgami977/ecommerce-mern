@@ -16,7 +16,8 @@ import UpdateProfile from "./components/User/UpdateProfile.js";
 import { loadUser } from "./store/actions/userAction";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdatePassword from "./components/User/UpdatePassword";
-import ForgotPassword from "./components/User/ForgotPassword.js";
+import ForgotPassword from "./components/User/ForgotPassword";
+import ResetPassword from "./components/User/ResetPassword";
 
 function App() {
 	const dispatch = useDispatch();
@@ -65,6 +66,11 @@ function App() {
 					}
 				/>
 				<Route exact path="/password/forgot" element={<ForgotPassword />} />
+				<Route
+					exact
+					path="/password/reset/:token"
+					element={<ResetPassword />}
+				/>
 				<Route exact path="/search" element={<Search />} />
 				<Route exact path="/login" element={<LoginSignup />} />
 			</Routes>

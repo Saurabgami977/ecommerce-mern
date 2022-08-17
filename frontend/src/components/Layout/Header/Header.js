@@ -65,6 +65,7 @@ const Header = () => {
 		navigate("/orders");
 	};
 	const logout = () => {
+		navigate("/login");
 		dispatch(logoutUser());
 		alert.success("Logged out successfully");
 	};
@@ -219,15 +220,9 @@ const Header = () => {
 							{isAuthenticated
 								? LoggedInUserSettings.map((setting, index) => (
 										<MenuItem key={index} onClick={handleCloseUserMenu}>
-											<Link
-												to={setting.to}
-												style={{ textDecoration: "none", color: "black" }}
-												onClick={setting.func}
-											>
-												<Typography textAlign="center">
-													{setting.name}
-												</Typography>
-											</Link>
+											<Typography textAlign="center" onClick={setting.func}>
+												{setting.name}
+											</Typography>
 										</MenuItem>
 								  ))
 								: settings.map((setting, index) => (

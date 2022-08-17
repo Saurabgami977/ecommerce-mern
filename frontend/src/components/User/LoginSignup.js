@@ -10,6 +10,8 @@ import FaceIcon from "@mui/icons-material/Face";
 
 import "./LoginSignup.css";
 import Loader from "../Layout/Loader/Loader";
+import MetaData from "../Layout/MetaData";
+
 import { clearErrors, login, register } from "../../store/actions/userAction";
 
 const LoginSignup = () => {
@@ -101,6 +103,8 @@ const LoginSignup = () => {
 				<Loader />
 			) : (
 				<>
+					<MetaData title="Login/Signup" />
+
 					<div className="loginSignupContainer">
 						<div className="loginSignupBox">
 							<div>

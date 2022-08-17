@@ -14,6 +14,7 @@ import {
 	getProductDetails,
 } from "../../store/actions/productAction";
 import "./ProductDetails.css";
+import NotFound from "./NotFound";
 
 const ProductDetails = ({ match }) => {
 	const alert = useAlert();
@@ -26,18 +27,21 @@ const ProductDetails = ({ match }) => {
 
 	useEffect(() => {
 		if (error) {
-			alert.error(error);
-			return dispatch(clearErrors);
+			alert.info(error);
+			dispatch(clearErrors());
 		}
+	}, [error, alert, dispatch]);
+
+	useEffect(() => {
 		dispatch(getProductDetails(id));
-	}, [error, alert, dispatch, id]);
+	}, [dispatch, id]);
 
 	const options = {
 		edit: false,
 		color: "rgba(20,20,20,0.1",
 		activeColot: "tomato",
 		size: window.innerWidth < 600 ? 20 : 25,
-		value: Number(product && product.rating),
+		value: Number(product && product.ratings),
 		isHalf: true,
 	};
 
@@ -45,7 +49,7 @@ const ProductDetails = ({ match }) => {
 		<>
 			{loading ? (
 				<Loader />
-			) : (
+			) : product ? (
 				<>
 					{product && <MetaData title={product.name + `- Saurav Store`} />}
 					<div className="ProductDetails">
@@ -112,18 +116,20 @@ const ProductDetails = ({ match }) => {
 							<button className="submitReview"> Submit Review </button>
 						</div>
 					</div>
+					<h3 className="reviewsHeading">Reviews</h3>
+					{product && product.reviews && product.reviews[0] ? (
+						<div className="reviews">
+							{product.reviews &&
+								product.reviews.map((review, index) => (
+									<ReviewCard key={index} review={review} />
+								))}
+						</div>
+					) : (
+						<p className="noReviews">No Review Yet</p>
+					)}
 				</>
-			)}
-			<h3 className="reviewsHeading">Reviews</h3>
-			{product && product.reviews && product.reviews[0] ? (
-				<div className="reviews">
-					{product.reviews &&
-						product.reviews.map((review, index) => (
-							<ReviewCard key={index} review={review} />
-						))}
-				</div>
 			) : (
-				<p className="noReviews">No Review Yet</p>
+				<NotFound />
 			)}
 		</>
 	);

@@ -12,6 +12,7 @@ import Products from "./components/Product/Products.js";
 import Search from "./components/Product/Search.js";
 import LoginSignup from "./components/User/LoginSignup";
 import Profile from "./components/User/Profile";
+import UpdateProfile from "./components/User/UpdateProfile.js";
 import { loadUser } from "./store/actions/userAction";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 
@@ -39,6 +40,15 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<Profile />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					exact
+					path="/me/update"
+					element={
+						<ProtectedRoute>
+							<UpdateProfile />
 						</ProtectedRoute>
 					}
 				/>

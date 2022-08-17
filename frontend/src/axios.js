@@ -45,6 +45,10 @@ export const loadUserApi = () => API.get("/api/v1/me");
 // LOGOUT USER
 export const logoutUserAPI = () => API.get("/api/v1/logout");
 
+// Update User
+export const updateUserAPI = (userData) =>
+	API.put("/api/v1/me/update", userData, registerConfig);
+
 export const addToCart = (productId) => API.post("/api/v1/cart", { productId });
 export const getCart = () => API.get("/api/v1/cart");
 export const removeFromCart = (productId) =>

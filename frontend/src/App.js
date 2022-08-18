@@ -18,6 +18,7 @@ import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdatePassword from "./components/User/UpdatePassword";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
+import NotFound from "./components/Layout/NotFound/NotFound";
 
 function App() {
 	const dispatch = useDispatch();
@@ -29,6 +30,8 @@ function App() {
 		});
 		dispatch(loadUser());
 	}, [dispatch]);
+
+	window.addEventListener("contextmenu", (e) => e.preventDefault());
 
 	return (
 		<Router>
@@ -73,6 +76,7 @@ function App() {
 				/>
 				<Route exact path="/search" element={<Search />} />
 				<Route exact path="/login" element={<LoginSignup />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />
 		</Router>

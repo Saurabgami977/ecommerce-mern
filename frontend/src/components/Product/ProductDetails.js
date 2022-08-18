@@ -14,7 +14,7 @@ import {
 	getProductDetails,
 } from "../../store/actions/productAction";
 import "./ProductDetails.css";
-import NotFound from "./NotFound";
+import NotFound from "../Layout/NotFound/NotFound";
 
 const ProductDetails = ({ match }) => {
 	const alert = useAlert();

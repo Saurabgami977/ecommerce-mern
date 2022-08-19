@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
-import { useDispatch } from "react-redux";
 
 import "./App.css";
 import Footer from "./components/Layout/Footer/Footer";
@@ -13,7 +12,6 @@ import Search from "./components/Product/Search.js";
 import LoginSignup from "./components/User/LoginSignup";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile.js";
-import { loadUser } from "./store/actions/userAction";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdatePassword from "./components/User/UpdatePassword";
 import ForgotPassword from "./components/User/ForgotPassword";
@@ -21,15 +19,13 @@ import ResetPassword from "./components/User/ResetPassword";
 import NotFound from "./components/Layout/NotFound/NotFound";
 
 function App() {
-	const dispatch = useDispatch();
 	useEffect(() => {
 		WebFont.load({
 			google: {
 				families: ["Roboto", "Droidsans", "Chilanka"],
 			},
 		});
-		dispatch(loadUser());
-	}, [dispatch]);
+	}, []);
 
 	window.addEventListener("contextmenu", (e) => e.preventDefault());
 

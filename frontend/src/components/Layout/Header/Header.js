@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,10 +14,10 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { logoutUser } from "../../../store/actions/userAction";
+import { loadUser, logoutUser } from "../../../store/actions/userAction";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -29,6 +29,7 @@ const pages = [
 const Header = () => {
 	const dispatch = useDispatch();
 	const alert = useAlert();
+	const location = useLocation();
 	const navigate = useNavigate();
 
 	const { isAuthenticated, user } = useSelector((state) => state.userReducer);
@@ -81,6 +82,10 @@ const Header = () => {
 	if (user?.role === "admin") {
 		LoggedInUserSettings.unshift({ name: "Dashboard", to: "/dashboard" });
 	}
+
+	useEffect(() => {
+		location.pathname !== "/login" && dispatch(loadUser());
+	}, [dispatch]);
 
 	return (
 		<AppBar position="fixed" color="primary">

@@ -15,15 +15,33 @@ import {
 } from "../../store/actions/productAction";
 import "./ProductDetails.css";
 import NotFound from "../Layout/NotFound/NotFound";
+import { addItemsToCart } from "../../store/actions/cartActions";
 
 const ProductDetails = ({ match }) => {
 	const alert = useAlert();
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const [numOfItems, setNumOfItems] = useState(1);
+	const [quantity, setQuantity] = useState(1);
 	const { product, loading, error } = useSelector(
 		(state) => state.productDeatails,
 	);
+
+	const increaseQuantity = () => {
+		if (product.stock <= quantity) return;
+		const qty = quantity + 1;
+		setQuantity(qty);
+	};
+
+	const decreaseQuantity = () => {
+		if (quantity <= 1) return;
+		const qty = quantity - 1;
+		setQuantity(qty);
+	};
+
+	const addToCartHandler = () => {
+		dispatch(addItemsToCart(id, quantity));
+		alert.success("Product added to cart");
+	};
 
 	useEffect(() => {
 		if (error) {
@@ -82,19 +100,15 @@ const ProductDetails = ({ match }) => {
 								</h1>
 								<div className="detailsBlock-3-1">
 									<div className="detailsBlock-3-1-1">
-										<button onClick={() => setNumOfItems(numOfItems - 1)}>
-											-
-										</button>
-										<input
-											type="number"
-											value={numOfItems}
-											onChange={(e) => setNumOfItems(e.target.value)}
-										/>
-										<button onClick={() => setNumOfItems(numOfItems + 1)}>
-											+
-										</button>
+										<button onClick={decreaseQuantity}>-</button>
+										<input readOnly type="number" value={quantity} />
+										<button onClick={increaseQuantity}>+</button>
 									</div>
-									<button variant="outlined" color="primary">
+									<button
+										onClick={addToCartHandler}
+										variant="outlined"
+										color="primary"
+									>
 										Add to Cart
 									</button>
 								</div>

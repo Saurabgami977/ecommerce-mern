@@ -33,9 +33,8 @@ const user = require("./routes/userRoute");
 app.use("/api/v1", products);
 app.use("/api/v1", user);
 
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-app.get("*", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+app.get("/", (req, res) => {
+	res.send("Hello from Ecommerce API");
 });
 
 //Middleware for error

@@ -4,3 +4,5 @@
 /frontend/build
 
 /backend/config/config.env
+
+/frontend/.env

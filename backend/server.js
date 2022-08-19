@@ -18,14 +18,19 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 // Connecting to the database
 connectDatabase();
+
 cloudinary.config({
 	cloud_name: "dzij4kl87",
 	api_key: "834393944951484",
 	api_secret: "RQrLKwykiCLy-4s-XRoIy3JuEJU",
 });
 
-const server = app.listen(process.env.PORT, () => {
-	console.log(`Server is working on http://localhost:${process.env.PORT}`);
+const server = app.listen(process.env.PORT || 4000, () => {
+	console.log(
+		`Server is working on ${req.protocol}://${req.get("host")}:${
+			process.env.PORT || 4000
+		}`,
+	);
 });
 
 // Unhandeled Promise Rejections

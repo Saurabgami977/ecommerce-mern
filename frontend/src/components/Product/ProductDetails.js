@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Carousel from "react-material-ui-carousel";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { useAlert } from "react-alert";
 
@@ -21,6 +21,7 @@ const ProductDetails = ({ match }) => {
 	const alert = useAlert();
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [quantity, setQuantity] = useState(1);
 	const { product, loading, error } = useSelector(
 		(state) => state.productDeatails,
@@ -41,6 +42,7 @@ const ProductDetails = ({ match }) => {
 	const addToCartHandler = () => {
 		dispatch(addItemsToCart(id, quantity));
 		alert.success("Product added to cart");
+		navigate("/cart");
 	};
 
 	useEffect(() => {

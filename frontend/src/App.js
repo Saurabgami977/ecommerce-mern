@@ -17,6 +17,7 @@ import UpdatePassword from "./components/User/UpdatePassword";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
 import NotFound from "./components/Layout/NotFound/NotFound";
+import Cart from "./components/Cart/Cart";
 
 function App() {
 	useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
 		});
 	}, []);
 
-	window.addEventListener("contextmenu", (e) => e.preventDefault());
+	// window.addEventListener("contextmenu", (e) => e.preventDefault());
 
 	return (
 		<Router>
@@ -64,12 +65,13 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
-				<Route exact path="/password/forgot" element={<ForgotPassword />} />
 				<Route
 					exact
 					path="/password/reset/:token"
 					element={<ResetPassword />}
 				/>
+				<Route exact path="/cart" element={<Cart />} />
+				<Route exact path="/password/forgot" element={<ForgotPassword />} />
 				<Route exact path="/search" element={<Search />} />
 				<Route exact path="/login" element={<LoginSignup />} />
 				<Route path="*" element={<NotFound />} />

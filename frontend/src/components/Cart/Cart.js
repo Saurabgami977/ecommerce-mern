@@ -5,7 +5,10 @@ import { useAlert } from "react-alert";
 
 import "./Cart.css";
 import CartItemCard from "./CartItemCard";
-import { addItemsToCart } from "../../store/actions/cartActions";
+import {
+	addItemsToCart,
+	removeItemsFromCart,
+} from "../../store/actions/cartActions";
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -29,6 +32,11 @@ const Cart = () => {
 		dispatch(addItemsToCart(id, newQty));
 	};
 
+	const deleteCartItems = (id) => {
+		dispatch(removeItemsFromCart(id));
+		alert.success("Item removed from cart");
+	};
+
 	return (
 		<>
 			<div className="cartPage">
@@ -40,8 +48,8 @@ const Cart = () => {
 
 				{cartItems &&
 					cartItems.map((item) => (
-						<div className="cartContainer">
-							<CartItemCard item={item} />
+						<div className="cartContainer" key={item.product}>
+							<CartItemCard item={item} deleteCartItems={deleteCartItems} />
 							<div className="cartInput">
 								<button
 									onClick={() => decreaseQuantity(item.product, item.quantity)}

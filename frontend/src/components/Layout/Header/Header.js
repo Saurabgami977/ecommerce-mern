@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -152,7 +153,7 @@ const Header = () => {
 						</Menu>
 					</Box>
 					<ShoppingBasketIcon
-						sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+						sx={{ display: { xs: "none", md: "none", sm: "flex" }, mr: 1 }}
 					/>
 					<Link to="/" style={{ textDecoration: "none" }}>
 						<Typography
@@ -160,7 +161,7 @@ const Header = () => {
 							noWrap
 							sx={{
 								mr: 2,
-								display: { xs: "flex", md: "none" },
+								display: { xs: "none", md: "none", sm: "flex" },
 								flexGrow: 1,
 								fontFamily: "monospace",
 								fontWeight: 700,
@@ -196,12 +197,17 @@ const Header = () => {
 							/>
 						</Button>
 					</Link>
+					<Link to="/cart">
+						<IconButton>
+							<ShoppingCartIcon sx={{ margin: "20px", color: "white" }} />
+						</IconButton>
+					</Link>
 					{/* {console.log(user?.avatar?.url)} */}
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar
-									alt="Saurav"
+									alt="User"
 									src={user?.avatar?.url || "/static/images/avatar/2.jpg"}
 								/>
 							</IconButton>

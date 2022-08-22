@@ -92,7 +92,16 @@ const Cart = () => {
 							<div></div>
 							<div className="cartGrossTotalBox">
 								<p>Gross Total</p>
-								<p>{"$ 10000"}</p>
+								{console.log(cartItems)}
+								<p>
+									{`$
+									${cartItems.reduce(
+										(acc, item) =>
+											acc + Number(item.quantity) * Number(item.price),
+										0,
+									)}
+									`}
+								</p>
 							</div>
 							<div></div>
 							<div className="checkoutBtn">

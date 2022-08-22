@@ -92,7 +92,6 @@ const Cart = () => {
 							<div></div>
 							<div className="cartGrossTotalBox">
 								<p>Gross Total</p>
-								{console.log(cartItems)}
 								<p>
 									{`$
 									${cartItems.reduce(

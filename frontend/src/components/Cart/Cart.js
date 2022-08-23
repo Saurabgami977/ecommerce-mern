@@ -2,7 +2,7 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import Typography from "@mui/material/Typography";
 
@@ -12,9 +12,11 @@ import {
 	addItemsToCart,
 	removeItemsFromCart,
 } from "../../store/actions/cartActions";
+import MetaData from "../Layout/MetaData";
 
 const Cart = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const alert = useAlert();
 	const { cartItems } = useSelector((state) => state.cart);
 
@@ -40,8 +42,13 @@ const Cart = () => {
 		alert.success("Item removed from cart");
 	};
 
+	const checkoutHandler = () => {
+		navigate("/login?redirect=/shipping");
+	};
+
 	return (
 		<>
+			<MetaData title="Cart - Saurav Store" />
 			{cartItems.length === 0 ? (
 				<div className="emptyCart">
 					<RemoveShoppingCartIcon />
@@ -104,7 +111,7 @@ const Cart = () => {
 							</div>
 							<div></div>
 							<div className="checkoutBtn">
-								<button>Checkout</button>
+								<button onClick={checkoutHandler}>Checkout</button>
 							</div>
 						</div>
 					</div>

@@ -12,12 +12,13 @@ import Search from "./components/Product/Search.js";
 import LoginSignup from "./components/User/LoginSignup";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile.js";
-import ProtectedRoute from "./components/Route/ProtectedRoute";
+import ProtectedRoutes from "./components/Route/ProtectedRoutes";
 import UpdatePassword from "./components/User/UpdatePassword";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
 import NotFound from "./components/Layout/NotFound/NotFound";
 import Cart from "./components/Cart/Cart";
+import Shipping from "./components/Cart/Shipping";
 
 function App() {
 	useEffect(() => {
@@ -35,45 +36,30 @@ function App() {
 			<Header />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
+
 				<Route exact path="/product/:id" element={<ProductDetails />} />
 				<Route exact path="/products" element={<Products />} />
 				<Route path="/products/:keyword" element={<Products />} />
-				<Route
-					exact
-					path="/account"
-					element={
-						<ProtectedRoute>
-							<Profile />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					exact
-					path="/me/update"
-					element={
-						<ProtectedRoute>
-							<UpdateProfile />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					exact
-					path="/password/update"
-					element={
-						<ProtectedRoute>
-							<UpdatePassword />
-						</ProtectedRoute>
-					}
-				/>
+				<Route exact path="/search" element={<Search />} />
+
+				<Route exact path="/cart" element={<Cart />} />
+
+				<Route exact path="/password/forgot" element={<ForgotPassword />} />
+				<Route exact path="/login" element={<LoginSignup />} />
 				<Route
 					exact
 					path="/password/reset/:token"
 					element={<ResetPassword />}
 				/>
-				<Route exact path="/cart" element={<Cart />} />
-				<Route exact path="/password/forgot" element={<ForgotPassword />} />
-				<Route exact path="/search" element={<Search />} />
-				<Route exact path="/login" element={<LoginSignup />} />
+
+				<Route element={<ProtectedRoutes />}>
+					<Route exact path="/me/update" element={<UpdateProfile />} />
+					<Route exact path="/password/update" element={<UpdatePassword />} />
+					<Route exact path="/password/update" element={<UpdatePassword />} />
+					<Route exact path="/shipping" element={<Shipping />} />
+					<Route exact path="/account" element={<Profile />} />
+				</Route>
+
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />

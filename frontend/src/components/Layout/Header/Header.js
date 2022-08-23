@@ -18,7 +18,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { loadUser, logoutUser } from "../../../store/actions/userAction";
+import {
+	clearErrors,
+	loadUser,
+	logoutUser,
+} from "../../../store/actions/userAction";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -33,7 +37,9 @@ const Header = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const { isAuthenticated, user } = useSelector((state) => state.userReducer);
+	const { isAuthenticated, user, error } = useSelector(
+		(state) => state.userReducer,
+	);
 
 	const [anchorElNav, setAnchorElNav] = useState(null);
 	const [anchorElUser, setAnchorElUser] = useState(null);
@@ -87,6 +93,12 @@ const Header = () => {
 	useEffect(() => {
 		location.pathname !== "/login" && dispatch(loadUser());
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (error) {
+			dispatch(clearErrors());
+		}
+	}, [error, dispatch]);
 
 	return (
 		<AppBar position="fixed" color="primary">

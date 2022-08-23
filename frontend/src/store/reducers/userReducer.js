@@ -13,12 +13,13 @@ import {
 	LOGOUT_FAIL,
 } from "../constants/userConstant";
 
-export const userReducer = (state = { user: {} }, action) => {
+export const userReducer = (state = { user: undefined }, action) => {
 	switch (action.type) {
 		case LOAD_USER_REQUEST:
 		case LOGIN_REQUEST:
 		case REGISTER_REQUEST:
 			return {
+				...state,
 				loading: true,
 				isAuthenticated: false,
 			};

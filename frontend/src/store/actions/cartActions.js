@@ -1,5 +1,9 @@
 import { fetchPostDetails } from "../../axios";
-import { ADD_TO_CART, REMOVE_CART_ITEM } from "../constants/cartConstant";
+import {
+	ADD_TO_CART,
+	REMOVE_CART_ITEM,
+	SAVE_SHIPPING_INFO,
+} from "../constants/cartConstant";
 
 // Add to cart
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) => {
@@ -29,4 +33,15 @@ export const removeItemsFromCart = (id) => async (dispatch, getState) => {
 	});
 
 	localStorage.setItem("cartItems", JSON.stringify(getState().cart.cartItems));
+};
+
+// Save Shipping info
+
+export const saveShippingInfo = (info) => async (dispatch) => {
+	dispatch({
+		type: SAVE_SHIPPING_INFO,
+		payload: info,
+	});
+
+	localStorage.setItem("shippingInfo", JSON.stringify(info));
 };

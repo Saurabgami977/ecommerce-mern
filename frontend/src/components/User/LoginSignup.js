@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -17,6 +17,8 @@ import { clearErrors, login, register } from "../../store/actions/userAction";
 const LoginSignup = () => {
 	const dispatch = useDispatch();
 	const alert = useAlert();
+	let location = useLocation();
+
 	const loginTab = useRef(null);
 	const registerTab = useRef(null);
 	const switcherTab = useRef(null);
@@ -70,15 +72,17 @@ const LoginSignup = () => {
 		}
 	};
 
+	const redirect = location.search ? location.search.split("=")[1] : "/account";
+
 	useEffect(() => {
 		if (error) {
 			alert.error(error);
 			return dispatch(clearErrors);
 		}
 		if (isAuthenticated) {
-			navigate("/account");
+			navigate(redirect);
 		}
-	}, [error, alert, dispatch, isAuthenticated, navigate]);
+	}, [error, alert, dispatch, redirect, isAuthenticated, navigate]);
 
 	const switchTab = (e, tab) => {
 		if (tab === "login") {

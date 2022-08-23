@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
@@ -20,12 +20,23 @@ const Shipping = () => {
 
 	const shippingInfo = useSelector((state) => state.cart.shippingInfo);
 
-	const [address, setAddress] = useState(shippingInfo.address);
-	const [city, setCity] = useState(shippingInfo.city);
-	const [state, setState] = useState(shippingInfo.state);
-	const [country, setCountry] = useState(shippingInfo.country);
-	const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
-	const [phone, setPhone] = useState(shippingInfo.phone);
+	const [address, setAddress] = useState();
+	const [city, setCity] = useState();
+	const [state, setState] = useState();
+	const [country, setCountry] = useState();
+	const [pinCode, setPinCode] = useState();
+	const [phone, setPhone] = useState();
+
+	useEffect(() => {
+		if (shippingInfo) {
+			setAddress(shippingInfo.address);
+			setCity(shippingInfo.city);
+			setState(shippingInfo.state);
+			setCountry(shippingInfo.country);
+			setPinCode(shippingInfo.pinCode);
+			setPhone(shippingInfo.phone);
+		}
+	}, [shippingInfo]);
 
 	const shippingSubmit = () => {};
 

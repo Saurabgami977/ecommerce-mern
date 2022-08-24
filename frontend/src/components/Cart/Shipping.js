@@ -24,12 +24,12 @@ const Shipping = () => {
 
 	const shippingInfo = useSelector((state) => state.cart.shippingInfo);
 
-	const [address, setAddress] = useState();
-	const [city, setCity] = useState();
-	const [state, setState] = useState();
-	const [country, setCountry] = useState();
-	const [pinCode, setPinCode] = useState();
-	const [phone, setPhone] = useState();
+	const [address, setAddress] = useState("");
+	const [city, setCity] = useState("");
+	const [state, setState] = useState("");
+	const [country, setCountry] = useState("");
+	const [pinCode, setPinCode] = useState("");
+	const [phone, setPhone] = useState("");
 
 	useEffect(() => {
 		if (shippingInfo) {

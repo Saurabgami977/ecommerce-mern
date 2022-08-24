@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
 
@@ -20,14 +20,26 @@ import NotFound from "./components/Layout/NotFound/NotFound";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
+import Payment from "./components/Cart/Payment";
+import { fetchStripeApiKey } from "./axios";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 function App() {
+	const [stripeApiKey, setStripeApiKey] = useState("");
+
+	async function getStripeApiKey() {
+		const { data } = await fetchStripeApiKey();
+		setStripeApiKey(data.stripeApiKey);
+	}
+
 	useEffect(() => {
 		WebFont.load({
 			google: {
 				families: ["Roboto", "Droidsans", "Chilanka"],
 			},
 		});
+		getStripeApiKey();
 	}, []);
 
 	window.addEventListener("contextmenu", (e) => e.preventDefault());
@@ -59,6 +71,18 @@ function App() {
 					<Route exact path="/password/update" element={<UpdatePassword />} />
 					<Route exact path="/shipping" element={<Shipping />} />
 					<Route exact path="/order/confirm" element={<ConfirmOrder />} />
+
+					{stripeApiKey && (
+						<Route
+							exact
+							path="/process/payment"
+							element={
+								<Elements stripe={loadStripe(stripeApiKey)}>
+									<Payment />
+								</Elements>
+							}
+						/>
+					)}
 				</Route>
 
 				<Route path="*" element={<NotFound />} />

@@ -12,6 +12,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStation";
 
 import MetaData from "../Layout/MetaData";
+import CheckoutSteps from "./CheckoutSteps.js";
 import "./Shipping.css";
 
 const Shipping = () => {
@@ -43,6 +44,7 @@ const Shipping = () => {
 	return (
 		<>
 			<MetaData title="Shipping Details" />
+			<CheckoutSteps activeSteps={0} />
 			<div className="shippingContainer">
 				<div className="shippingBox">
 					<h2 className="shippingHeading">Shipping Details</h2>

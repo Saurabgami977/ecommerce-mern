@@ -19,6 +19,7 @@ import ResetPassword from "./components/User/ResetPassword";
 import NotFound from "./components/Layout/NotFound/NotFound";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
+import ConfirmOrder from "./components/Cart/ConfirmOrder";
 
 function App() {
 	useEffect(() => {
@@ -53,11 +54,11 @@ function App() {
 				/>
 
 				<Route element={<ProtectedRoutes />}>
+					<Route exact path="/account" element={<Profile />} />
 					<Route exact path="/me/update" element={<UpdateProfile />} />
 					<Route exact path="/password/update" element={<UpdatePassword />} />
-					<Route exact path="/password/update" element={<UpdatePassword />} />
 					<Route exact path="/shipping" element={<Shipping />} />
-					<Route exact path="/account" element={<Profile />} />
+					<Route exact path="/order/confirm" element={<ConfirmOrder />} />
 				</Route>
 
 				<Route path="*" element={<NotFound />} />

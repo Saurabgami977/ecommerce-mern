@@ -14,10 +14,13 @@ import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStati
 import MetaData from "../Layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps.js";
 import "./Shipping.css";
+import { saveShippingInfo } from "../../store/actions/cartActions";
+import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {
 	const dipatch = useDispatch();
 	const alert = useAlert();
+	const navigate = useNavigate();
 
 	const shippingInfo = useSelector((state) => state.cart.shippingInfo);
 
@@ -39,12 +42,25 @@ const Shipping = () => {
 		}
 	}, [shippingInfo]);
 
-	const shippingSubmit = () => {};
+	const shippingSubmit = (e) => {
+		e.preventDefault();
+
+		if (phone.length < 10 || phone.length > 10) {
+			alert.info("Phone Number should be of 10 digits");
+			return;
+		}
+
+		dipatch(
+			saveShippingInfo({ address, city, state, country, pinCode, phone }),
+		);
+
+		navigate("/order/confirm");
+	};
 
 	return (
 		<>
 			<MetaData title="Shipping Details" />
-			<CheckoutSteps className="checkoutSteps" activeSteps={1} />
+			<CheckoutSteps className="checkoutSteps" activeSteps={0} />
 			<div className="shippingContainer">
 				<div className="shippingBox">
 					<h2 className="shippingHeading">Shipping Details</h2>

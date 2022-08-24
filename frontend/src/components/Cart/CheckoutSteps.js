@@ -5,7 +5,9 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
-const CheckoutSteps = ({ activeStep }) => {
+import "./CheckoutSteps.css";
+
+const CheckoutSteps = ({ activeSteps }) => {
 	const steps = [
 		{
 			label: <Typography>Shipping Details</Typography>,
@@ -26,10 +28,21 @@ const CheckoutSteps = ({ activeStep }) => {
 	};
 	return (
 		<>
-			<Stepper alternativeLabel activeStep={activeStep} style={stepStyles}>
+			<Stepper alternativeLabel activeStep={activeSteps} style={stepStyles}>
 				{steps.map((item, index) => (
-					<Step key={index}>
-						<StepLabel icon={item.icon}>{item.label}</StepLabel>
+					<Step
+						key={index}
+						active={activeSteps === index ? true : false}
+						completed={activeSteps >= index ? true : false}
+					>
+						<StepLabel
+							style={{
+								color: activeSteps >= index ? "tomato" : "rgba(0, 0, 0, 0.649)",
+							}}
+							icon={item.icon}
+						>
+							{item.label}
+						</StepLabel>
 					</Step>
 				))}
 			</Stepper>

@@ -1,5 +1,4 @@
 .shippingContainer {
-	margin-top: 10vmax;
 	width: 100vw;
 	max-width: 100%;
 	display: flex;
@@ -77,13 +76,10 @@
 	background-color: rgb(179, 66, 46);
 }
 
-@media screen and (max-width: 600px) {
-	.shippingContainer {
-		margin-top: 10vmax;
-	}
+@media screen and (max-width: 800px) {
 	.shippingBox {
 		width: 100vw;
-		height: 95vh;
+		height: 100%;
 	}
 
 	.shippingForm {
@@ -99,6 +95,7 @@
 	.shippingForm > div > select {
 		padding: 5vw 10vw;
 		font: 300 4vw cursive;
+		margin: 5px;
 	}
 	.shippingForm > div > svg {
 		font-size: 6vw;

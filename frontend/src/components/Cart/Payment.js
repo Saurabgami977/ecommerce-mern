@@ -90,6 +90,13 @@ const Payment = () => {
 			<div className="paymentContainer">
 				<form onSubmit={(e) => submitHandler(e)} className="paymentForm">
 					<Typography>Card Info</Typography>
+					<Typography color="red" textAlign="center" variant="subtitle2">
+						Please do not pay with your card on this site, This is built for
+						sole purpose of testing.
+					</Typography>
+					<Typography textAlign="center" variant="caption">
+						Test Card: 4242 4242 4242 4242
+					</Typography>
 					<div>
 						<CreditCardIcon />
 						<CardNumberElement className="paymentInput" />

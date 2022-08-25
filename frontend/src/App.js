@@ -21,6 +21,7 @@ import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import Payment from "./components/Cart/Payment";
+import OrderSuccess from "./components/Cart/OrderSuccess";
 import { fetchStripeApiKey } from "./axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -71,6 +72,7 @@ function App() {
 					<Route exact path="/password/update" element={<UpdatePassword />} />
 					<Route exact path="/shipping" element={<Shipping />} />
 					<Route exact path="/order/confirm" element={<ConfirmOrder />} />
+					<Route exact path="/success" element={<OrderSuccess />} />
 
 					{stripeApiKey && (
 						<Route

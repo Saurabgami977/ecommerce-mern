@@ -74,7 +74,7 @@ const MyOrders = () => {
 				id: item._id,
 				status: item.orderStatus,
 				itemQty: item.orderItems.length,
-				amount: item.totalPrice,
+				amount: `$ ${item.totalPrice}`,
 			}),
 		);
 

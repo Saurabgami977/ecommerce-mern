@@ -8,7 +8,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import FaceIcon from "@mui/icons-material/Face";
 
-import "./LoginSignup.css";
+import "./css/LoginSignup.css";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 

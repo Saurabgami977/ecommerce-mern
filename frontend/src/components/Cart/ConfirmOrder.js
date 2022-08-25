@@ -6,7 +6,7 @@ import { Typography } from "@mui/material";
 
 import MetaData from "../Layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
-import "./ConfirmOrder.css";
+import "./css/ConfirmOrder.css";
 
 const ConfirmOrder = () => {
 	const nagivate = useNavigate();

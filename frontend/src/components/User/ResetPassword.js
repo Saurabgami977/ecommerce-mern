@@ -13,7 +13,7 @@ import {
 	clearErrors,
 } from "../../store/actions/updateProfileAction";
 import { UPDATE_PASSWORD_RESET } from "../../store/constants/updateProfileConstant";
-import "./ResetPassword.css";
+import "./css/ResetPassword.css";
 
 const ResetPassword = () => {
 	const dispatch = useDispatch();

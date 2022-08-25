@@ -6,7 +6,7 @@ import { useAlert } from "react-alert";
 
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-import "./ForgotPassword.css";
+import "./css/ForgotPassword.css";
 import {
 	clearErrors,
 	forgotPassword,

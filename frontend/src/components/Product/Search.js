@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "./search.css";
+import "./css/search.css";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import MetaData from "../Layout/MetaData";

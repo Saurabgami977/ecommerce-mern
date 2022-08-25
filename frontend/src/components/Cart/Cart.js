@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import Typography from "@mui/material/Typography";
 
-import "./Cart.css";
+import "./css/Cart.css";
 import CartItemCard from "./CartItemCard";
 import {
 	addItemsToCart,

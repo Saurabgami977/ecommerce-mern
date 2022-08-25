@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import FaceIcon from "@mui/icons-material/Face";
 
-import "./UpdateProfile.css";
+import "./css/UpdateProfile.css";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 import { loadUser } from "../../store/actions/userAction";

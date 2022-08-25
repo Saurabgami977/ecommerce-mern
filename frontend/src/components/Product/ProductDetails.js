@@ -13,7 +13,7 @@ import {
 	clearErrors,
 	getProductDetails,
 } from "../../store/actions/productAction";
-import "./ProductDetails.css";
+import "./css/ProductDetails.css";
 import NotFound from "../Layout/NotFound/NotFound";
 import { addItemsToCart } from "../../store/actions/cartActions";
 

@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import MetaData from "../Layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
-import "./Payment.css";
+import "./css/Payment.css";
 import { processPaymentApi } from "../../axios";
 import { clearErrors, createOrder } from "../../store/actions/orderAction";
 

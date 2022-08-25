@@ -13,7 +13,7 @@ import TransferWithinAStationIcon from "@mui/icons-material/TransferWithinAStati
 
 import MetaData from "../Layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps.js";
-import "./Shipping.css";
+import "./css/Shipping.css";
 import { saveShippingInfo } from "../../store/actions/cartActions";
 import { useNavigate } from "react-router-dom";
 

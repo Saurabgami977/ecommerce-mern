@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./CartItemCard.css";
+import "./css/CartItemCard.css";
 
 const CartItemCard = ({ item, deleteCartItems }) => {
 	return (

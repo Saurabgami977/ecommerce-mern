@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import MetaData from "../Layout/MetaData";
 import Loader from "../Layout/Loader/Loader";
-import "./Profile.css";
+import "./css/Profile.css";
 
 const Profile = () => {
 	const navigate = useNavigate();

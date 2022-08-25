@@ -9,7 +9,7 @@ import { Slider, Typography } from "@mui/material";
 import Loader from "../Layout/Loader/Loader";
 import ProductCard from "../Home/ProductCard";
 import { clearErrors, getProduct } from "../../store/actions/productAction";
-import "./Products.css";
+import "./css/Products.css";
 import MetaData from "../Layout/MetaData";
 
 const categories = [

@@ -5,7 +5,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 
-import "./CheckoutSteps.css";
+import "./css/CheckoutSteps.css";
 
 const CheckoutSteps = ({ activeSteps }) => {
 	const steps = [

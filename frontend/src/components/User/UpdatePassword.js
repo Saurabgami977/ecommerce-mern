@@ -14,7 +14,7 @@ import {
 	clearErrors,
 } from "../../store/actions/updateProfileAction";
 import { UPDATE_PASSWORD_RESET } from "../../store/constants/updateProfileConstant";
-import "./UpdatePassword.css";
+import "./css/UpdatePassword.css";
 
 const UpdatePassword = () => {
 	const dispatch = useDispatch();

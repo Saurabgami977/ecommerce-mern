@@ -26,9 +26,11 @@ import MyOrders from "./components/Cart/MyOrders";
 import { fetchStripeApiKey } from "./axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { useSelector } from "react-redux";
 
 function App() {
 	const [stripeApiKey, setStripeApiKey] = useState("");
+	const { user } = useSelector((state) => state.userReducer);
 
 	async function getStripeApiKey() {
 		const { data } = await fetchStripeApiKey();
@@ -42,7 +44,7 @@ function App() {
 			},
 		});
 		getStripeApiKey();
-	}, []);
+	}, [user]);
 
 	window.addEventListener("contextmenu", (e) => e.preventDefault());
 

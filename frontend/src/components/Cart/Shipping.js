@@ -32,6 +32,7 @@ const Shipping = () => {
 	const [phoneNo, setPhoneNo] = useState("");
 
 	useEffect(() => {
+		console.log(shippingInfo);
 		if (shippingInfo) {
 			setAddress(shippingInfo.address);
 			setCity(shippingInfo.city);
@@ -41,6 +42,16 @@ const Shipping = () => {
 			setPhoneNo(shippingInfo.phoneNo);
 		}
 	}, [shippingInfo]);
+
+	useEffect(() => {
+		if (!shippingInfo) {
+			const localStorageShippingInfo = localStorage.getItem("shippingInfo")
+				? JSON.parse(localStorage.getItem("shippingInfo"))
+				: {};
+
+			dipatch(saveShippingInfo(localStorageShippingInfo));
+		}
+	}, []);
 
 	const shippingSubmit = (e) => {
 		e.preventDefault();

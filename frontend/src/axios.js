@@ -76,7 +76,8 @@ export const processPaymentApi = (paymentData) =>
 	API.post("/api/v1/payment/process", paymentData, config);
 
 // Create New Order
-
-export const createOrderApi = (order) => {
+export const createOrderApi = (order) =>
 	API.post("/api/v1/order/new", order, config);
-};
+
+// My Orders
+export const myOrdersApi = () => API.get("/api/v1/orders/me");

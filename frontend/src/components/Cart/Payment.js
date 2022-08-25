@@ -13,13 +13,14 @@ import {
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import EventIcon from "@mui/icons-material/Event";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import { useNavigate } from "react-router-dom";
 
 import MetaData from "../Layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 
 import "./Payment.css";
 import { processPaymentApi } from "../../axios";
-import { useNavigate } from "react-router-dom";
+import { clearErrors, createOrder } from "../../store/actions/orderAction";
 
 const Payment = () => {
 	const dispatch = useDispatch();
@@ -31,12 +32,29 @@ const Payment = () => {
 
 	const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 	const { user } = useSelector((state) => state.userReducer);
+	const { error } = useSelector((state) => state.newOrderReducer);
 
 	const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
 	const paymentData = {
 		amount: Math.round(orderInfo.totalPrice * 100),
 	};
+
+	const order = {
+		shippingInfo,
+		orderItems: cartItems,
+		itemsPrice: orderInfo.subTotal,
+		taxPrice: orderInfo.tax,
+		shippingPrice: orderInfo.shippingCharges,
+		totalPrice: orderInfo.totalPrice,
+	};
+
+	useEffect(() => {
+		if (error) {
+			alert.show(error);
+			return dispatch(clearErrors());
+		}
+	}, [dispatch, alert, error]);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -67,18 +85,24 @@ const Payment = () => {
 
 			if (result.error) {
 				payBtn.current.disabled = false;
+				alert.error(result.error.message);
 			} else {
 				if (result.paymentIntent.status === "succeeded") {
+					order.paymentInfo = {
+						id: result.paymentIntent.id,
+						status: result.paymentIntent.status,
+					};
+
+					dispatch(createOrder(order));
 					navigate("/success");
 				} else {
 					alert.error("There is some issue while processing payment");
 				}
 			}
-
-			alert.error(result.error.message);
 		} catch (error) {
 			payBtn.current.disabled = false;
-			alert.error(error.response.data.message);
+			alert.error(error);
+			console.log(error);
 		}
 	};
 

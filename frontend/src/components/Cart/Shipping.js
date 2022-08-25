@@ -29,7 +29,7 @@ const Shipping = () => {
 	const [state, setState] = useState("");
 	const [country, setCountry] = useState("");
 	const [pinCode, setPinCode] = useState("");
-	const [phone, setPhone] = useState("");
+	const [phoneNo, setPhoneNo] = useState("");
 
 	useEffect(() => {
 		if (shippingInfo) {
@@ -38,20 +38,20 @@ const Shipping = () => {
 			setState(shippingInfo.state);
 			setCountry(shippingInfo.country);
 			setPinCode(shippingInfo.pinCode);
-			setPhone(shippingInfo.phone);
+			setPhoneNo(shippingInfo.phoneNo);
 		}
 	}, [shippingInfo]);
 
 	const shippingSubmit = (e) => {
 		e.preventDefault();
 
-		if (phone.length < 10 || phone.length > 10) {
+		if (phoneNo.length < 10 || phoneNo.length > 10) {
 			alert.info("Phone Number should be of 10 digits");
 			return;
 		}
 
 		dipatch(
-			saveShippingInfo({ address, city, state, country, pinCode, phone }),
+			saveShippingInfo({ address, city, state, country, pinCode, phoneNo }),
 		);
 
 		navigate("/order/confirm");
@@ -106,8 +106,8 @@ const Shipping = () => {
 								type="number"
 								placeholder="Phone Number"
 								required
-								value={phone}
-								onChange={(e) => setPhone(e.target.value)}
+								value={phoneNo}
+								onChange={(e) => setPhoneNo(e.target.value)}
 							/>
 						</div>
 						<div>

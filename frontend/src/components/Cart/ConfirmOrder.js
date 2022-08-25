@@ -33,6 +33,7 @@ const ConfirmOrder = () => {
 			shippingCharge,
 			tax,
 			totalPrice,
+			phoneNo: shippingInfo.phone,
 		};
 
 		sessionStorage.setItem("orderInfo", JSON.stringify(data));

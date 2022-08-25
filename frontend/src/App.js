@@ -23,6 +23,7 @@ import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import Payment from "./components/Cart/Payment";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
+import OrderDetails from "./components/Order/OrderDetails";
 import { fetchStripeApiKey } from "./axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -77,6 +78,7 @@ function App() {
 					<Route exact path="/order/confirm" element={<ConfirmOrder />} />
 					<Route exact path="/success" element={<OrderSuccess />} />
 					<Route exact path="/orders" element={<MyOrders />} />
+					<Route exact path="/order/:id" element={<OrderDetails />} />
 
 					{stripeApiKey && (
 						<Route

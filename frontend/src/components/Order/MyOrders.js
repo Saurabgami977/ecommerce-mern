@@ -11,7 +11,7 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import { clearErrors, myOrders } from "../../store/actions/orderAction";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
-import "./MyOrders.css";
+import "./css/MyOrders.css";
 import { useEffect } from "react";
 
 const MyOrders = () => {

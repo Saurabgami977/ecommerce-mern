@@ -81,3 +81,6 @@ export const createOrderApi = (order) =>
 
 // My Orders
 export const myOrdersApi = () => API.get("/api/v1/orders/me");
+
+// Order Details API
+export const getOrderDetailsApi = (id) => API.get(`/api/v1/order/${id}`);

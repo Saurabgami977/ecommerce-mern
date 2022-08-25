@@ -1,6 +1,6 @@
-body {
+/* body {
 	background-color: rgb(235, 235, 235);
-}
+} */
 
 .myOrdersPage {
 	margin: 10vmax 0;
@@ -8,7 +8,7 @@ body {
 	max-width: 100%;
 	padding: 0 7vmax;
 	box-sizing: border-box;
-	background-color: rgb(235, 235, 235);
+	/* background-color: rgb(235, 235, 235); */
 	/* position: fixed;
 	top: 0;
 	left: 0; */
@@ -28,7 +28,7 @@ body {
 }
 
 .myOrdersTable {
-	background-color: white;
+	background-color: rgb(241, 241, 241);
 }
 
 .myOrdersTable div {

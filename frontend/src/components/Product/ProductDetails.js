@@ -90,11 +90,8 @@ const ProductDetails = () => {
 			setOpen(!open);
 			document.body.style.overflow = "hidden";
 		}
-	}, [error, reviewError, alert, dispatch, success, open]);
-
-	useEffect(() => {
 		dispatch(getProductDetails(id));
-	}, [dispatch, id]);
+	}, [error, reviewError, alert, dispatch, success, open, id]);
 
 	if (open) {
 		setTimeout(() => {
@@ -106,6 +103,7 @@ const ProductDetails = () => {
 		size: "large",
 		value: Number(product && product.ratings),
 		readOnly: true,
+		precision: 0.5,
 	};
 
 	return (

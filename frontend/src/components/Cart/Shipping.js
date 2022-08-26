@@ -18,7 +18,7 @@ import { saveShippingInfo } from "../../store/actions/cartActions";
 import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {
-	const dipatch = useDispatch();
+	const dispatch = useDispatch();
 	const alert = useAlert();
 	const navigate = useNavigate();
 
@@ -32,7 +32,6 @@ const Shipping = () => {
 	const [phoneNo, setPhoneNo] = useState("");
 
 	useEffect(() => {
-		console.log(shippingInfo);
 		if (shippingInfo) {
 			setAddress(shippingInfo.address);
 			setCity(shippingInfo.city);
@@ -49,9 +48,9 @@ const Shipping = () => {
 				? JSON.parse(localStorage.getItem("shippingInfo"))
 				: {};
 
-			dipatch(saveShippingInfo(localStorageShippingInfo));
+			dispatch(saveShippingInfo(localStorageShippingInfo));
 		}
-	}, []);
+	}, [dispatch, shippingInfo]);
 
 	const shippingSubmit = (e) => {
 		e.preventDefault();
@@ -61,7 +60,7 @@ const Shipping = () => {
 			return;
 		}
 
-		dipatch(
+		dispatch(
 			saveShippingInfo({ address, city, state, country, pinCode, phoneNo }),
 		);
 

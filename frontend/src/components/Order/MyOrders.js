@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import LaunchIcon from "@mui/icons-material/Launch";
 

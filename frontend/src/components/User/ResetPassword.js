@@ -12,7 +12,6 @@ import {
 	resetPassword,
 	clearErrors,
 } from "../../store/actions/updateProfileAction";
-import { UPDATE_PASSWORD_RESET } from "../../store/constants/updateProfileConstant";
 import "./css/ResetPassword.css";
 
 const ResetPassword = () => {

@@ -1,20 +1,39 @@
 import * as React from "react";
+import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
-import Stack from "@mui/material/Stack";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import CloseIcon from "@mui/icons-material/Close";
 
-const AlertBar = ({ type, title, description }) => {
+export default function AlertBar({ isOpen, message }) {
+	const [open, setOpen] = React.useState(false);
+
+	React.useEffect(() => {
+		setOpen(isOpen);
+	}, [isOpen]);
+
 	return (
-		<Stack sx={{ width: "100%" }} spacing={2}>
-			<Alert
-				severity={type}
-				sx={{ position: "absolute", bottom: 50, left: 50, zIndex: 1000 }}
-			>
-				<AlertTitle>{title}</AlertTitle>
-				{description} <strong>check it out!</strong>
-			</Alert>
-		</Stack>
+		<Box sx={{ width: "20%", paddingLeft: "10px" }} position="fixed" bottom="0">
+			<Collapse in={open}>
+				<Alert
+					severity="success"
+					action={
+						<IconButton
+							aria-label="close"
+							color="inherit"
+							size="small"
+							onClick={() => {
+								setOpen(false);
+							}}
+						>
+							<CloseIcon fontSize="inherit" />
+						</IconButton>
+					}
+					sx={{ mb: 2 }}
+				>
+					{message}
+				</Alert>
+			</Collapse>
+		</Box>
 	);
-};
-
-export default AlertBar;
+}

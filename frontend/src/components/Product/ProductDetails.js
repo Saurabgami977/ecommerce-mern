@@ -110,6 +110,7 @@ const ProductDetails = ({ match }) => {
 										onClick={addToCartHandler}
 										variant="outlined"
 										color="primary"
+										disabled={product.stock < 1 ? true : false}
 									>
 										Add to Cart
 									</button>

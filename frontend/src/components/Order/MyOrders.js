@@ -33,8 +33,8 @@ const MyOrders = () => {
 			flex: 0.5,
 			cellClassName: (params) => {
 				return params.getValue(params.id, "status") === "Delivered"
-					? "greenColor"
-					: "redColor";
+					? "greenText"
+					: "redText";
 			},
 		},
 		{
@@ -81,10 +81,12 @@ const MyOrders = () => {
 	useEffect(() => {
 		if (error) {
 			alert.show(error);
-			return dispatch(clearErrors());
+			dispatch(clearErrors());
 		}
-		dispatch(myOrders());
 	}, [error, alert, dispatch]);
+	useEffect(() => {
+		dispatch(myOrders());
+	}, [dispatch]);
 
 	return (
 		<>
@@ -93,16 +95,36 @@ const MyOrders = () => {
 				<Loader />
 			) : (
 				<div className="myOrdersPage">
-					<DataGrid
-						rows={rows}
-						columns={columns}
-						pageSize={5}
-						rowsPerPageOptions={[5]}
-						disableSelectionOnClick
-						className="myOrdersTable"
-						autoHeight
-					/>
-					<Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+					{orders.length >= 1 ? (
+						<>
+							<DataGrid
+								rows={rows}
+								columns={columns}
+								pageSize={5}
+								rowsPerPageOptions={[5]}
+								disableSelectionOnClick
+								className="myOrdersTable"
+								autoHeight
+							/>
+							<Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+						</>
+					) : (
+						<Typography>
+							No Order To Show.{" "}
+							<Link
+								to="/products"
+								style={{
+									backgroundColor: "green",
+									padding: "5px 13px",
+									color: "white",
+									textDecoration: "none",
+									borderRadius: "7px",
+								}}
+							>
+								Place a Order
+							</Link>{" "}
+						</Typography>
+					)}
 				</div>
 			)}
 		</>

@@ -8,6 +8,7 @@ import { useAlert } from "react-alert";
 import { getOrderDetails, clearErrors } from "../../store/actions/orderAction";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
+import NotFound from "../Layout/NotFound/NotFound";
 
 import "./css/OrderDetails.css";
 
@@ -23,17 +24,19 @@ const OrderDetails = () => {
 	useEffect(() => {
 		if (error) {
 			alert.show(error);
-			return dispatch(clearErrors());
+			dispatch(clearErrors());
 		}
+	}, [dispatch, alert, error]);
 
+	useEffect(() => {
 		dispatch(getOrderDetails(id));
-	}, [dispatch, alert, error, id]);
+	}, [dispatch, id]);
 
 	return (
 		<>
 			{loading ? (
 				<Loader />
-			) : (
+			) : order ? (
 				<>
 					<MetaData title="Order Details - Saurav Store" />
 					<div className="orderDetailsPage">
@@ -117,6 +120,8 @@ const OrderDetails = () => {
 						</div>
 					</div>
 				</>
+			) : (
+				<NotFound />
 			)}
 		</>
 	);

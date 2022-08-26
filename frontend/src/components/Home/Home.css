@@ -83,14 +83,15 @@
 }
 
 .productCard > div {
-	margin: 0, 5vmax;
+	margin: 0.5vmax;
 	display: flex;
 	justify-content: flex-start;
+	align-items: center;
 }
 
-.productCard > div > span {
+.productCardSpan {
 	margin: 0.5vmax;
-	font: 300 0.7vmax "Roboto";
+	font: 300 0.8vmax "Roboto";
 }
 
 .productCard > p {

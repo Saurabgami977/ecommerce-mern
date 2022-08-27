@@ -2,6 +2,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import Sidebar from "../Dashboard/SideBar";
 
 const ProtectedRoutes = () => {
 	const { user } = useSelector((state) => state.userReducer);
@@ -15,7 +16,12 @@ const ProtectedRoutes = () => {
 	}
 
 	if (user.role === "admin") {
-		return <Outlet />;
+		return (
+			<>
+				<Sidebar />
+				<Outlet />
+			</>
+		);
 	}
 
 	if (user.role === "user") {

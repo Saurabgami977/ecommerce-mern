@@ -1,0 +1,9 @@
+.dashboardBody {
+	margin-left: 250px;
+}
+
+@media screen and (max-width: 600px) {
+	.dashboardBody {
+		margin-left: 0px;
+	}
+}

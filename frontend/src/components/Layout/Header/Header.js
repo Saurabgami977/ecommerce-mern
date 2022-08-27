@@ -65,21 +65,26 @@ const Header = () => {
 
 	const loginUser = () => {
 		navigate("/login");
+		setAnchorElUser(null);
 	};
 	const account = () => {
 		navigate("/account");
+		setAnchorElUser(null);
 	};
 	const orders = () => {
 		navigate("/orders");
+		setAnchorElUser(null);
 	};
 	const logout = () => {
 		navigate("/login");
 		dispatch(logoutUser());
 		alert.success("Logged out successfully");
+		setAnchorElUser(null);
 	};
 
 	const dashboard = () => {
 		navigate("/admin/dashboard");
+		setAnchorElUser(null);
 	};
 
 	const settings = [{ name: "Login", to: "/login", func: loginUser }];
@@ -165,14 +170,15 @@ const Header = () => {
 							}}
 						>
 							{pages.map((page, index) => (
-								<MenuItem key={index} onClick={handleCloseNavMenu}>
-									<Link
-										to={page.to}
-										style={{ textDecoration: "none", color: "black" }}
-									>
+								<Link
+									to={page.to}
+									style={{ textDecoration: "none", color: "black" }}
+									key={index}
+								>
+									<MenuItem onClick={handleCloseNavMenu}>
 										<Typography textAlign="center">{page.name}</Typography>
-									</Link>
-								</MenuItem>
+									</MenuItem>
+								</Link>
 							))}
 						</Menu>
 					</Box>
@@ -199,18 +205,18 @@ const Header = () => {
 					</Link>
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page, index) => (
-							<Button
+							<Link
+								style={{ textDecoration: "none", color: "white" }}
+								to={page.to}
 								key={index}
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: "white", display: "block" }}
 							>
-								<Link
-									style={{ textDecoration: "none", color: "white" }}
-									to={page.to}
+								<Button
+									onClick={handleCloseNavMenu}
+									sx={{ my: 2, color: "white", display: "block" }}
 								>
 									{page.name}
-								</Link>
-							</Button>
+								</Button>
+							</Link>
 						))}
 					</Box>
 					<Link to="/search" style={{ textDecoration: "none", color: "white" }}>
@@ -258,10 +264,8 @@ const Header = () => {
 						>
 							{isAuthenticated
 								? LoggedInUserSettings.map((setting, index) => (
-										<MenuItem key={index} onClick={handleCloseUserMenu}>
-											<Typography textAlign="center" onClick={setting.func}>
-												{setting.name}
-											</Typography>
+										<MenuItem key={index} onClick={setting.func}>
+											<Typography textAlign="center">{setting.name}</Typography>
 										</MenuItem>
 								  ))
 								: settings.map((setting, index) => (

@@ -13,6 +13,7 @@ import LoginSignup from "./components/User/LoginSignup";
 import Profile from "./components/User/Profile";
 import UpdateProfile from "./components/User/UpdateProfile.js";
 import ProtectedRoutes from "./components/Route/ProtectedRoutes";
+import AdminRoutes from "./components/Route/AdminRoutes";
 import UpdatePassword from "./components/User/UpdatePassword";
 import ForgotPassword from "./components/User/ForgotPassword";
 import ResetPassword from "./components/User/ResetPassword";
@@ -28,6 +29,7 @@ import { fetchStripeApiKey } from "./axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
 	const [stripeApiKey, setStripeApiKey] = useState("");
@@ -91,6 +93,9 @@ function App() {
 							}
 						/>
 					)}
+				</Route>
+				<Route element={<AdminRoutes />}>
+					<Route exact path="/dashboard" element={<Dashboard />} />
 				</Route>
 
 				<Route path="*" element={<NotFound />} />

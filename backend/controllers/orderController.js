@@ -50,9 +50,6 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 		);
 	}
 
-	console.log(req.user.id, "logged in");
-	console.log(order.user.id, "order placer");
-
 	res.status(200).json({
 		success: true,
 		order,

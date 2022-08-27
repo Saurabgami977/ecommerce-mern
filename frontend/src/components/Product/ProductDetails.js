@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Carousel from "react-material-ui-carousel";
+import { Carousel } from "react-responsive-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -12,6 +12,7 @@ import {
 	Button,
 	Rating,
 } from "@mui/material";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";

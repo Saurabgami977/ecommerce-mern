@@ -47,8 +47,8 @@ const Home = () => {
 					<div className="container" id="container">
 						{products &&
 							products.map((product) => (
-								<Fade top>
-									<ProductCard key={product._id} product={product} />
+								<Fade top key={product._id}>
+									<ProductCard product={product} />
 								</Fade>
 							))}
 					</div>

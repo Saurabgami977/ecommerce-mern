@@ -78,6 +78,10 @@ const Header = () => {
 		alert.success("Logged out successfully");
 	};
 
+	const dashboard = () => {
+		navigate("/admin/dashboard");
+	};
+
 	const settings = [{ name: "Login", to: "/login", func: loginUser }];
 
 	const LoggedInUserSettings = [
@@ -87,7 +91,11 @@ const Header = () => {
 	];
 
 	if (user?.role === "admin") {
-		LoggedInUserSettings.unshift({ name: "Dashboard", to: "/dashboard" });
+		LoggedInUserSettings.unshift({
+			name: "Dashboard",
+			to: "/dashboard",
+			func: dashboard,
+		});
 	}
 
 	useEffect(() => {
@@ -99,6 +107,10 @@ const Header = () => {
 			dispatch(clearErrors());
 		}
 	}, [error, dispatch]);
+
+	if (location.pathname.split("/")[1] === "admin") {
+		return;
+	}
 
 	return (
 		<AppBar position="fixed" color="primary">
@@ -205,7 +217,11 @@ const Header = () => {
 						<Button color="secondary" onClick={() => handleSearchModal()}>
 							Search
 							<SearchIcon
-								sx={{ marginRight: "20px", marginLeft: "20px", color: "white" }}
+								sx={{
+									marginRight: "20px",
+									marginLeft: "20px",
+									color: "white",
+								}}
 							/>
 						</Button>
 					</Link>

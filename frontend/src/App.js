@@ -94,8 +94,8 @@ function App() {
 						/>
 					)}
 				</Route>
-				<Route element={<AdminRoutes />}>
-					<Route exact path="/dashboard" element={<Dashboard />} />
+				<Route element={<AdminRoutes />} path="/admin/">
+					<Route exact path="/admin/dashboard" element={<Dashboard />} />
 				</Route>
 
 				<Route path="*" element={<NotFound />} />

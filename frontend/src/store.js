@@ -17,6 +17,7 @@ import {
 	newOrderReducer,
 	orderDetailsReducer,
 } from "./store/reducers/orderReducer";
+import { adminOrdersReducer } from "./store/reducers/adminOrdersReducer";
 
 const reducer = combineReducers({
 	products: productReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
 	myOrdersReducer: myOrdersReducer,
 	orderDetailsReducer: orderDetailsReducer,
 	newReviewReducer: newReviewReducer,
+	adminOrdersReducer: adminOrdersReducer,
 });
 
 let initialState = {

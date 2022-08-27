@@ -22,7 +22,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CategoryIcon from "@mui/icons-material/Category";
 import PeopleIcon from "@mui/icons-material/People";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 function Sidebar(props) {
 	const { window } = props;
@@ -71,7 +71,8 @@ function Sidebar(props) {
 			<AppBar
 				position="sticky"
 				sx={{
-					width: { sm: `calc(100% - ${drawerWidth}px)` },
+					// width: { sm: `calc(100% - ${drawerWidth}px)` },
+					display: { sm: `none` },
 					ml: { sm: `${drawerWidth}px` },
 				}}
 			>
@@ -86,7 +87,7 @@ function Sidebar(props) {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap component="div">
-						Responsive drawer
+						Saurav Store's Admin Dashboard
 					</Typography>
 				</Toolbar>
 			</AppBar>

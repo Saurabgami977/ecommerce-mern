@@ -1,5 +1,6 @@
 .dashboardBody {
-	margin-left: 250px;
+	margin-left: 200px;
+	width: 100vw - 200px;
 }
 
 @media screen and (max-width: 600px) {

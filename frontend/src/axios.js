@@ -88,3 +88,8 @@ export const getOrderDetailsApi = (id) => API.get(`/api/v1/order/${id}`);
 // New Review API
 export const newReviewAPI = (reviewData) =>
 	API.put("/api/v1/review", reviewData, config);
+
+// ---------------------------ADMIN------------------------------
+
+// Get all orders --admin
+export const getAllAdminOrders = () => API.get("/api/v1/admin/orders", config);

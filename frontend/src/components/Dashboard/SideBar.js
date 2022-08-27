@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
@@ -21,10 +21,17 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import CategoryIcon from "@mui/icons-material/Category";
 import PeopleIcon from "@mui/icons-material/People";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../store/actions/userAction";
+import HomeIcon from "@mui/icons-material/Home";
 
 const drawerWidth = 200;
 
 function Sidebar(props) {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -32,11 +39,18 @@ function Sidebar(props) {
 		setMobileOpen(!mobileOpen);
 	};
 
+	const logout = () => {
+		dispatch(logoutUser());
+		navigate("/login");
+	};
+
 	const dashboardNavigation = [
 		{ name: "Dashboard", to: "/admin/dashboard", icon: <DashboardIcon /> },
 		{ name: "Orders", to: "/admin/orders", icon: <AddShoppingCartIcon /> },
 		{ name: "Products", to: "/admin/products", icon: <CategoryIcon /> },
 		{ name: "Users", to: "/admin/users", icon: <PeopleIcon /> },
+		{ name: "Logout", to: "/login", icon: <LogoutIcon /> },
+		{ name: "Visit site", to: "/", icon: <HomeIcon /> },
 	];
 
 	const drawer = (
@@ -46,14 +60,27 @@ function Sidebar(props) {
 			<List>
 				{dashboardNavigation.map((item, index) => (
 					<Link
+						onClick={() => item.name === "Logout" && logout()}
 						key={index}
 						to={item.to}
-						style={{ textDecoration: "none", color: "black" }}
+						style={{
+							textDecoration: "none",
+							color: "black",
+							position: item.name === "Logout" && "fixed",
+							bottom: item.name === "Logout" && "0",
+						}}
 					>
 						<ListItem disablePadding>
 							<ListItemButton>
-								<ListItemIcon>{item.icon}</ListItemIcon>
-								<ListItemText primary={item.name} />
+								<ListItemIcon
+									style={{ color: item.name === "Logout" && "red" }}
+								>
+									{item.icon}
+								</ListItemIcon>
+								<ListItemText
+									style={{ color: item.name === "Logout" && "red" }}
+									primary={item.name}
+								/>
 							</ListItemButton>
 						</ListItem>
 					</Link>
@@ -91,6 +118,7 @@ function Sidebar(props) {
 					</Typography>
 				</Toolbar>
 			</AppBar>
+
 			<Box
 				component="nav"
 				sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}

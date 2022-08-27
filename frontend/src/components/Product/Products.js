@@ -63,6 +63,43 @@ const Products = () => {
 
 	return (
 		<>
+			<div className="filterBox">
+				<Typography>Price</Typography>
+				<Slider
+					value={price}
+					valueLabelDisplay="auto"
+					onChange={priceHandler}
+					aria-labelledby="range-slider"
+					min={0}
+					max={25000}
+				/>
+
+				<Typography>Category</Typography>
+				<ul className="categoryBox">
+					{categories.map((category, index) => (
+						<li
+							key={(category, index)}
+							className="category-link"
+							onClick={() => setCategory(category.toLowerCase())}
+						>
+							{category}
+						</li>
+					))}
+				</ul>
+
+				<fieldset>
+					<Typography component="legend">Ratings Above</Typography>
+					<Slider
+						value={ratings}
+						onChange={(e, newRating) => setRatings(newRating)}
+						aria-labelledby="continuous-slider"
+						min={0}
+						max={5}
+						valueLabelDisplay="auto"
+						size="small"
+					/>
+				</fieldset>
+			</div>
 			{loading ? (
 				<Loader />
 			) : (
@@ -74,43 +111,6 @@ const Products = () => {
 							products.map((product) => (
 								<ProductCard key={product._id} product={product} />
 							))}
-					</div>
-					<div className="filterBox">
-						<Typography>Price</Typography>
-						<Slider
-							value={price}
-							valueLabelDisplay="auto"
-							onChange={priceHandler}
-							aria-labelledby="range-slider"
-							min={0}
-							max={25000}
-						/>
-
-						<Typography>Category</Typography>
-						<ul className="categoryBox">
-							{categories.map((category, index) => (
-								<li
-									key={(category, index)}
-									className="category-link"
-									onClick={() => setCategory(category.toLowerCase())}
-								>
-									{category}
-								</li>
-							))}
-						</ul>
-
-						<fieldset>
-							<Typography component="legend">Ratings Above</Typography>
-							<Slider
-								value={ratings}
-								onChange={(e, newRating) => setRatings(newRating)}
-								aria-labelledby="continuous-slider"
-								min={0}
-								max={5}
-								valueLabelDisplay="auto"
-								size="small"
-							/>
-						</fieldset>
 					</div>
 
 					{resultPerPage < count && (

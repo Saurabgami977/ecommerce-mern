@@ -44,6 +44,15 @@ exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 		return next(new ErrorHander("Order not found with this Id", 404));
 	}
 
+	if (req.user.role !== "admin" && order.user.id !== req.user.id) {
+		return next(
+			new ErrorHander("This order is not found in your account", 404),
+		);
+	}
+
+	console.log(req.user.id, "logged in");
+	console.log(order.user.id, "order placer");
+
 	res.status(200).json({
 		success: true,
 		order,

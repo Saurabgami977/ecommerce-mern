@@ -11,6 +11,7 @@ import ProductCard from "../Home/ProductCard";
 import { clearErrors, getProduct } from "../../store/actions/productAction";
 import "./css/Products.css";
 import MetaData from "../Layout/MetaData";
+import NotFound from "../Layout/NotFound/NotFound";
 
 const categories = [
 	"Laptop",
@@ -107,10 +108,13 @@ const Products = () => {
 					<MetaData title="Products - Saurav Store" />
 					<h2 className="productsHeading">Products</h2>
 					<div className="products">
-						{products &&
+						{products.length > 0 ? (
 							products.map((product) => (
 								<ProductCard key={product._id} product={product} />
-							))}
+							))
+						) : (
+							<NotFound />
+						)}
 					</div>
 
 					{resultPerPage < count && (

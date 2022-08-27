@@ -6,7 +6,6 @@ const NotFound = () => {
 	const styles = {
 		body: {
 			backgroundColor: "#F2F2F2",
-			width: "100vw",
 			height: "100vh",
 			maxWidth: "100%",
 			display: "flex",

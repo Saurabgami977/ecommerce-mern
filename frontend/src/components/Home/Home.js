@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
+import Fade from "react-reveal/Fade";
 
 import MetaData from "../Layout/MetaData";
 import "./Home.css";
@@ -43,11 +44,12 @@ const Home = () => {
 					</div>
 
 					<h2 className="homeHeading">Featured Products</h2>
-
 					<div className="container" id="container">
 						{products &&
 							products.map((product) => (
-								<ProductCard key={product._id} product={product} />
+								<Fade top>
+									<ProductCard key={product._id} product={product} />
+								</Fade>
 							))}
 					</div>
 				</>

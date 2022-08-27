@@ -2,16 +2,20 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 import { DataGrid } from "@mui/x-data-grid";
 import LaunchIcon from "@mui/icons-material/Launch";
 
 import { adminOrdersAction } from "../../store/actions/adminOrdersAction";
+import Loader from "../Layout/Loader/Loader";
+import MetaData from "../Layout/MetaData";
+import { CLEAR_ERRORS } from "../../store/constants/adminOrderConstant";
 
 const AdminOrders = () => {
 	const dispatch = useDispatch();
-
-	const { orders, success, loading, error } = useSelector(
+	const alert = useAlert();
+	const { orders, loading, error } = useSelector(
 		(state) => state.adminOrdersReducer,
 	);
 
@@ -76,19 +80,32 @@ const AdminOrders = () => {
 
 	useEffect(() => {
 		dispatch(adminOrdersAction());
-	}, [dispatch]);
+		if (error) {
+			alert(error);
+			dispatch(CLEAR_ERRORS);
+		}
+	}, [dispatch, error, alert]);
 	return (
-		<div className="dashboardBody">
-			<DataGrid
-				rows={rows}
-				columns={columns}
-				pageSize={10}
-				rowsPerPageOptions={[5]}
-				disableSelectionOnClick
-				// className="myOrdersTable"
-				autoHeight
-			/>
-		</div>
+		<>
+			{loading ? (
+				<Loader />
+			) : (
+				<>
+					<MetaData title="Orders List - Admin Dashboard" />
+					<div className="dashboardBody">
+						<DataGrid
+							rows={rows}
+							columns={columns}
+							pageSize={10}
+							rowsPerPageOptions={[5]}
+							disableSelectionOnClick
+							// className="myOrdersTable"
+							autoHeight
+						/>
+					</div>
+				</>
+			)}
+		</>
 	);
 };
 

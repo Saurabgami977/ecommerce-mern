@@ -1,6 +1,17 @@
 .dashboardBody {
-	margin-left: 200px;
-	width: 100vw - 200px;
+	background-color: rgb(244, 244, 244);
+	padding-left: 200px;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+}
+
+.statusBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 @media screen and (max-width: 600px) {

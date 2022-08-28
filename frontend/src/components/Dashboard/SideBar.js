@@ -54,7 +54,7 @@ function Sidebar(props) {
 	];
 
 	const drawer = (
-		<div>
+		<div style={{ backgroundColor: "black", height: "100vh" }}>
 			<Toolbar />
 			<Divider />
 			<List>
@@ -65,7 +65,7 @@ function Sidebar(props) {
 						to={item.to}
 						style={{
 							textDecoration: "none",
-							color: "black",
+							color: "white",
 							position: item.name === "Logout" && "fixed",
 							bottom: item.name === "Logout" && "0",
 						}}
@@ -73,12 +73,17 @@ function Sidebar(props) {
 						<ListItem disablePadding>
 							<ListItemButton>
 								<ListItemIcon
-									style={{ color: item.name === "Logout" && "red" }}
+									style={{ color: item.name === "Logout" ? "red" : "white" }}
 								>
 									{item.icon}
 								</ListItemIcon>
 								<ListItemText
-									style={{ color: item.name === "Logout" && "red" }}
+									style={{
+										color: item.name === "Logout" ? "red" : "white",
+										"& :hover": {
+											color: "red",
+										},
+									}}
 									primary={item.name}
 								/>
 							</ListItemButton>

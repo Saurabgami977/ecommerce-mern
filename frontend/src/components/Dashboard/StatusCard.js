@@ -1,8 +1,9 @@
 import React from "react";
 
 import { Card, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const StatusCard = ({ title, Icon, value, iconColor }) => {
+const StatusCard = ({ title, Icon, value, iconColor, to }) => {
 	const styles = {
 		topSection: {
 			display: "flex",
@@ -22,7 +23,7 @@ const StatusCard = ({ title, Icon, value, iconColor }) => {
 		},
 		value: {
 			marginTop: 20,
-			font: "900 3vmax Roboto",
+			font: "700 2.5vmax Roboto",
 		},
 		icon: {
 			fontSize: 50,
@@ -31,15 +32,15 @@ const StatusCard = ({ title, Icon, value, iconColor }) => {
 	};
 	console.log(iconColor);
 	return (
-		<>
-			<Card elevation={3} style={styles.statusBar}>
+		<Card elevation={3} style={styles.statusBar}>
+			<Link to={to} style={{ color: "black", textDecoration: "none" }}>
 				<div style={styles.topSection}>
 					<Typography style={styles.cardHeader}>{title}</Typography>
 					<Icon style={styles.icon} />
 				</div>
 				<Typography style={styles.value}>{value}</Typography>
-			</Card>
-		</>
+			</Link>
+		</Card>
 	);
 };
 

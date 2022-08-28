@@ -22,11 +22,12 @@ const AdminProducts = () => {
 
 	const rows = [];
 	const columns = [
-		{ field: "name", headerName: "Name", flex: 0.5 },
+		{ field: "name", headerName: "Name", flex: 0.3, minWidth: 250 },
 		{
 			field: "image",
 			headerName: "Image",
 			flex: 0.5,
+			minWidth: 250,
 			renderCell: (params) => {
 				return (
 					<img
@@ -37,7 +38,7 @@ const AdminProducts = () => {
 				);
 			},
 		},
-		{ field: "id", flex: 0.5, headerName: "Product ID", minWidth: 300 },
+		{ field: "id", flex: 0.5, headerName: "Product ID", minWidth: 250 },
 		{ field: "ratings", headerName: "Ratings" },
 		{ field: "price", headerName: "Price", type: "number" },
 		{ field: "stock", headerName: "Stock", type: "number" },
@@ -90,7 +91,6 @@ const AdminProducts = () => {
 					rowsPerPageOptions={[5]}
 					disableSelectionOnClick
 					rowHeight={150}
-					// className="myOrdersTable"
 					autoHeight
 				/>
 			)}

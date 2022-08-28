@@ -10,32 +10,34 @@ import "./css/Dashboard.css";
 import StatusCard from "./StatusCard";
 
 const Dashboard = () => {
-	const styles = {};
-
 	const statusData = [
 		{
 			title: "Total Sales",
 			value: "$ 3.5k",
 			Icon: MonetizationOnIcon,
 			iconColor: "red",
+			to: "/admin/orders",
 		},
 		{
 			title: "Total Customers",
 			value: "2.3k",
 			Icon: GroupIcon,
 			iconColor: "#14B8A6",
+			to: "/admin/users",
 		},
 		{
 			title: "Total Products",
 			value: 342,
 			Icon: InventoryIcon,
 			iconColor: "#FFB020",
+			to: "/admin/products",
 		},
 		{
 			title: "New Orders",
 			value: 334,
 			Icon: AutorenewIcon,
 			iconColor: "#5048E5",
+			to: "/admin/orders",
 		},
 	];
 
@@ -51,6 +53,7 @@ const Dashboard = () => {
 							Icon={status.Icon}
 							value={status.value}
 							iconColor={status.iconColor}
+							to={status.to}
 						/>
 					))}
 				</div>

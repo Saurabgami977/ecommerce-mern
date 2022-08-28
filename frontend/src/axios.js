@@ -93,3 +93,7 @@ export const newReviewAPI = (reviewData) =>
 
 // Get all orders --admin
 export const getAllAdminOrders = () => API.get("/api/v1/admin/orders", config);
+
+// Get all products --admin
+export const getAllAdminProducts = () =>
+	API.get("/api/v1/admin/products", config);

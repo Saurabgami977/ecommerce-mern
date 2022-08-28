@@ -18,6 +18,7 @@ import {
 	orderDetailsReducer,
 } from "./store/reducers/orderReducer";
 import { adminOrdersReducer } from "./store/reducers/adminOrdersReducer";
+import adminProductsReducer from "./store/reducers/adminProductsSlice";
 
 let initialState = {
 	cart: {
@@ -43,6 +44,7 @@ const store = configureStore({
 		orderDetailsReducer: orderDetailsReducer,
 		newReviewReducer: newReviewReducer,
 		adminOrdersReducer: adminOrdersReducer,
+		adminProductsReducer: adminProductsReducer,
 	},
 	preloadedState: initialState,
 });

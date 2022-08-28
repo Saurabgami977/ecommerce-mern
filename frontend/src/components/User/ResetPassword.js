@@ -23,7 +23,7 @@ const ResetPassword = () => {
 	const { error, success, loading } = useSelector(
 		(state) => state.forgotPasswordReducer,
 	);
-	console.log(token);
+
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 

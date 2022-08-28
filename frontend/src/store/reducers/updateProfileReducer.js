@@ -81,7 +81,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
 			return {
 				...state,
 				loading: false,
-				error: action.message,
+				error: action.payload,
 			};
 		case CLEAR_ERRORS:
 			return {

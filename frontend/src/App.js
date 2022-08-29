@@ -33,6 +33,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Orders from "./components/Dashboard/AdminOrders";
 import AdminProducts from "./components/Dashboard/AdminProducts";
 import Users from "./components/Dashboard/Users";
+import Contact from "./components/Home/Contact";
 
 function App() {
 	const [stripeApiKey, setStripeApiKey] = useState("");
@@ -59,6 +60,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
+				<Route exact path="/contact" element={<Contact />} />
 
 				<Route exact path="/product/:id" element={<ProductDetails />} />
 				<Route exact path="/products" element={<Products />} />

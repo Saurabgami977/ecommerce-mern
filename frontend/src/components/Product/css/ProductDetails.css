@@ -209,27 +209,34 @@
 	.ProductDetails {
 		flex-direction: column;
 		height: unset;
+		width: 100vw;
 	}
 
 	.ProductDetails > div:last-child {
-		align-items: center;
+		border: 1px solid black;
+		width: 90vw;
 	}
 
 	.detailsBlock-1 > h2 {
 		font-size: 2.8vmax;
-		text-align: center;
 	}
 
 	.detailsBlock-1 > p {
-		text-align: center;
 		font-size: 1vmax;
 	}
 
 	.detailsBlock-2 {
-		justify-content: center;
+		justify-content: space-between;
+		width: 100%;
 	}
 	.detailsBlock-2 > span {
-		font-size: 1.5vmax;
+		font-size: 1.8vmax;
+	}
+
+	.detailsBlock-3 {
+		display: flex;
+		flex-wrap: wrap;
+		width: 90vw;
 	}
 
 	.detailsBlock-3 > h1 {
@@ -238,14 +245,16 @@
 	}
 
 	.detailsBlock-3-1 {
-		flex-direction: column;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
 	}
 
 	.detailsBlock-3-1-1 {
-		padding: 2vmax 0;
+		display: flex;
 	}
 	.detailsBlock-3-1-1 > button {
-		padding: 1.2vmax;
+		padding: 1.7vmax;
 		width: 4vmax;
 	}
 
@@ -258,7 +267,7 @@
 	.detailsBlock-3-1 > button:last-child {
 		font: 500 1.7vmax "Roboto";
 		padding: 1.5vmax;
-		width: 20vmax;
+		width: 50%;
 		margin: 3vmax 0;
 	}
 
@@ -266,6 +275,7 @@
 		padding: 2.5vmax 0;
 		text-align: center;
 		font: 400 2vmax "Roboto";
+		width: 100%;
 	}
 
 	.detailsBlock-4 {
@@ -279,7 +289,7 @@
 	.submitReview {
 		font: 500 1.7vmax "Roboto";
 		padding: 1.5vmax;
-		width: 20vmax;
+		width: 100%;
 		margin: 3vmax 0;
 	}
 

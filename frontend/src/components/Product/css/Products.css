@@ -100,10 +100,22 @@
 }
 
 @media screen and (max-width: 600px) {
+	.page {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
+	.productsHeading {
+		margin-top: 10vmax;
+	}
+	.products {
+		width: 100vw;
+		padding: 0;
+	}
 	.filterBox {
-		width: 20vmax;
+		width: 70vw;
+		margin: 1vmax auto;
 		position: static;
-		margin: auto;
 	}
 
 	.page-link {

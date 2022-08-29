@@ -64,78 +64,80 @@ const Products = () => {
 
 	return (
 		<>
-			<div className="filterBox">
-				<Typography>Price</Typography>
-				<Slider
-					value={price}
-					valueLabelDisplay="auto"
-					onChange={priceHandler}
-					aria-labelledby="range-slider"
-					min={0}
-					max={25000}
-				/>
-
-				<Typography>Category</Typography>
-				<ul className="categoryBox">
-					{categories.map((category, index) => (
-						<li
-							key={(category, index)}
-							className="category-link"
-							onClick={() => setCategory(category.toLowerCase())}
-						>
-							{category}
-						</li>
-					))}
-				</ul>
-
-				<fieldset>
-					<Typography component="legend">Ratings Above</Typography>
+			<div className="page">
+				<div className="filterBox">
+					<Typography>Price</Typography>
 					<Slider
-						value={ratings}
-						onChange={(e, newRating) => setRatings(newRating)}
-						aria-labelledby="continuous-slider"
-						min={0}
-						max={5}
+						value={price}
 						valueLabelDisplay="auto"
-						size="small"
+						onChange={priceHandler}
+						aria-labelledby="range-slider"
+						min={0}
+						max={25000}
 					/>
-				</fieldset>
-			</div>
-			{loading ? (
-				<Loader />
-			) : (
-				<>
-					<MetaData title="Products - Saurav Store" />
-					<h2 className="productsHeading">Products</h2>
-					<div className="products">
-						{products.length > 0 ? (
-							products.map((product) => (
-								<ProductCard key={product._id} product={product} />
-							))
-						) : (
-							<NotFound />
+
+					<Typography>Category</Typography>
+					<ul className="categoryBox">
+						{categories.map((category, index) => (
+							<li
+								key={(category, index)}
+								className="category-link"
+								onClick={() => setCategory(category.toLowerCase())}
+							>
+								{category}
+							</li>
+						))}
+					</ul>
+
+					<fieldset>
+						<Typography component="legend">Ratings Above</Typography>
+						<Slider
+							value={ratings}
+							onChange={(e, newRating) => setRatings(newRating)}
+							aria-labelledby="continuous-slider"
+							min={0}
+							max={5}
+							valueLabelDisplay="auto"
+							size="small"
+						/>
+					</fieldset>
+				</div>
+				{loading ? (
+					<Loader />
+				) : (
+					<div>
+						<MetaData title="Products - Saurav Store" />
+						<h2 className="productsHeading">Products</h2>
+						<div className="products">
+							{products.length > 0 ? (
+								products.map((product) => (
+									<ProductCard key={product._id} product={product} />
+								))
+							) : (
+								<NotFound />
+							)}
+						</div>
+
+						{resultPerPage < count && (
+							<div className="paginationBox">
+								<Pagination
+									activePage={currentPage}
+									itemsCountPerPage={resultPerPage}
+									totalItemsCount={productsCount}
+									onChange={setCurrentPageNo}
+									nextPageText="Next"
+									prevPageText="Prev"
+									lastPageText="Last"
+									itemClass="page-item"
+									linkClass="page-link"
+									activeClass="pageItemActive"
+									activeLinkClass="pageLinkActive"
+								/>
+							</div>
 						)}
 					</div>
-
-					{resultPerPage < count && (
-						<div className="paginationBox">
-							<Pagination
-								activePage={currentPage}
-								itemsCountPerPage={resultPerPage}
-								totalItemsCount={productsCount}
-								onChange={setCurrentPageNo}
-								nextPageText="Next"
-								prevPageText="Prev"
-								lastPageText="Last"
-								itemClass="page-item"
-								linkClass="page-link"
-								activeClass="pageItemActive"
-								activeLinkClass="pageLinkActive"
-							/>
-						</div>
-					)}
-				</>
-			)}
+				)}
+			</div>
 		</>
 	);
 };

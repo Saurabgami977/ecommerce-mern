@@ -1,0 +1,25 @@
+.form {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 30px;
+}
+
+.form > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 0;
+}
+
+.input {
+	width: 300px;
+	margin: 0 10px;
+}
+
+.secondInput {
+	width: 600px;
+	margin: 10px;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
@@ -13,6 +13,7 @@ import {
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import EventIcon from "@mui/icons-material/Event";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
+
 import { useNavigate } from "react-router-dom";
 
 import MetaData from "../Layout/MetaData";
@@ -33,6 +34,7 @@ const Payment = () => {
 	const { shippingInfo, cartItems } = useSelector((state) => state.cart);
 	const { user } = useSelector((state) => state.userReducer);
 	const { error } = useSelector((state) => state.newOrderReducer);
+	const [loading, setLoading] = useState(false);
 
 	const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
@@ -60,6 +62,8 @@ const Payment = () => {
 		e.preventDefault();
 		payBtn.current.disabled = true;
 		try {
+			setLoading(true);
+
 			const { data } = await processPaymentApi(paymentData);
 
 			const client_secret = data.client_secret;
@@ -84,10 +88,12 @@ const Payment = () => {
 			});
 
 			if (result.error) {
+				setLoading(false);
 				payBtn.current.disabled = false;
 				alert.error(result.error.message);
 			} else {
 				if (result.paymentIntent.status === "succeeded") {
+					setLoading(false);
 					order.paymentInfo = {
 						id: result.paymentIntent.id,
 						status: result.paymentIntent.status,
@@ -96,10 +102,13 @@ const Payment = () => {
 					dispatch(createOrder(order));
 					navigate("/success");
 				} else {
+					setLoading(false);
 					alert.error("There is some issue while processing payment");
 				}
 			}
+			setLoading(false);
 		} catch (error) {
+			setLoading(false);
 			payBtn.current.disabled = false;
 			alert.error(error);
 			console.log(error);
@@ -135,7 +144,11 @@ const Payment = () => {
 					</div>
 					<input
 						type="submit"
-						value={`Pay - $${orderInfo && orderInfo.totalPrice}`}
+						value={
+							loading
+								? "Loading.........."
+								: `Pay - $${orderInfo && orderInfo.totalPrice}`
+						}
 						ref={payBtn}
 						className="paymentFormBtn"
 					/>

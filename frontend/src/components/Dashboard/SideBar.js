@@ -35,13 +35,14 @@ function Sidebar(props) {
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
-	const handleDrawerToggle = () => {
-		setMobileOpen(!mobileOpen);
-	};
-
 	const logout = () => {
 		dispatch(logoutUser());
 		navigate("/login");
+	};
+
+	const handleDrawerToggle = (name) => {
+		name === "Logout" && logout();
+		setMobileOpen(!mobileOpen);
 	};
 
 	const dashboardNavigation = [
@@ -60,7 +61,7 @@ function Sidebar(props) {
 			<List>
 				{dashboardNavigation.map((item, index) => (
 					<Link
-						onClick={() => item.name === "Logout" && logout()}
+						onClick={() => handleDrawerToggle(item.name)}
 						key={index}
 						to={item.to}
 						style={{

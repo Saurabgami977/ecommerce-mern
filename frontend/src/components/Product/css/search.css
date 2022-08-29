@@ -62,3 +62,35 @@
 .searchBox > input[type="submit"]:hover {
 	background-color: #0082f4;
 }
+
+@media screen and (max-width: 600px) {
+	.Outerbox {
+		padding-top: 10vmax;
+		justify-content: start;
+	}
+	.Outerbox > h2 {
+		font-size: 2.5vmax;
+	}
+
+	.searchBox {
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 4;
+	}
+
+	.searchBox > input[type="text"] {
+		padding: 1vmax 2vmax;
+		width: 50%;
+		font: 300 2vmax cursive;
+		height: 40px;
+	}
+
+	.searchBox > input[type="submit"] {
+		height: 40px;
+		padding: 1vmax;
+		width: 20%;
+		font: 300 2vmax "Roboto";
+	}
+}

@@ -71,7 +71,7 @@
 }
 
 .productCard {
-	width: 14vmax;
+	min-width: 14vw;
 	display: flex;
 	flex-direction: column;
 	text-decoration: none;
@@ -79,10 +79,13 @@
 	margin: 2vmax;
 	transition: all 0.5s;
 	padding-bottom: 0.5vmax;
+	box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
 }
 
 .productCard > img {
-	width: 14vmax;
+	min-width: 14vmax;
+	height: 14vmax;
+	object-fit: cover;
 }
 
 .productCard > div {
@@ -164,7 +167,9 @@
 	}
 
 	.productCard > img {
-		width: 20vmax;
+		width: 45vw;
+		height: 20vmax;
+		object-fit: cover;
 	}
 
 	.productCard > p {

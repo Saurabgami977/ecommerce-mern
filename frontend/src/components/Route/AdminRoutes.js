@@ -18,7 +18,7 @@ const ProtectedRoutes = () => {
 	if (user.role === "admin") {
 		return (
 			<>
-				<Sidebar></Sidebar>
+				<Sidebar />
 				<Outlet />
 			</>
 		);

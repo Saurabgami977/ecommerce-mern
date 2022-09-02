@@ -102,14 +102,13 @@ function App() {
 						/>
 					)}
 				</Route>
-				{/* <Route element={<AdminRoutes />} path="/admin/">
+
+				<Route element={<AdminRoutes />} path="/admin/">
 					<Route exact path="/admin/dashboard" element={<Dashboard />} />
 					<Route exact path="/admin/users" element={<Users />} />
 					<Route exact path="/admin/products" element={<AdminProducts />} />
 					<Route exact path="/admin/orders" element={<Orders />} />
-				</Route> */}
-
-				<Route path="/dashboard" element={<DashboardLayout />}></Route>
+				</Route>
 
 				<Route path="*" element={<NotFound />} />
 			</Routes>

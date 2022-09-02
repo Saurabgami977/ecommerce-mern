@@ -103,9 +103,10 @@ const Header = () => {
 		});
 	}
 
-	useEffect(() => {
-		location.pathname !== "/login" && dispatch(loadUser());
-	}, [dispatch]);
+	//  Checking user login status in App.js
+	// useEffect(() => {
+	// 	location.pathname !== "/login" && dispatch(loadUser());
+	// }, [dispatch]);
 
 	useEffect(() => {
 		if (error) {

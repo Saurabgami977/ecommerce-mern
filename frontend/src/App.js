@@ -29,11 +29,13 @@ import { fetchStripeApiKey } from "./axios";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
+import ScrollToTop from "./components/ScrollToTop";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Orders from "./components/Dashboard/AdminOrders";
 import AdminProducts from "./components/Dashboard/AdminProducts";
 import Users from "./components/Dashboard/Users";
 import Contact from "./components/Home/Contact";
+import DashboardLayout from "./Layouts/Dashboard";
 
 function App() {
 	const [stripeApiKey, setStripeApiKey] = useState("");
@@ -58,6 +60,7 @@ function App() {
 	return (
 		<Router>
 			<Header />
+			<ScrollToTop />
 			<Routes>
 				<Route exact path="/" element={<Home />} />
 				<Route exact path="/contact" element={<Contact />} />
@@ -99,12 +102,14 @@ function App() {
 						/>
 					)}
 				</Route>
-				<Route element={<AdminRoutes />} path="/admin/">
+				{/* <Route element={<AdminRoutes />} path="/admin/">
 					<Route exact path="/admin/dashboard" element={<Dashboard />} />
 					<Route exact path="/admin/users" element={<Users />} />
 					<Route exact path="/admin/products" element={<AdminProducts />} />
 					<Route exact path="/admin/orders" element={<Orders />} />
-				</Route>
+				</Route> */}
+
+				<Route path="/dashboard" element={<DashboardLayout />}></Route>
 
 				<Route path="*" element={<NotFound />} />
 			</Routes>

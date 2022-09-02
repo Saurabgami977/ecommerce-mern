@@ -35,7 +35,6 @@ import Orders from "./components/Dashboard/AdminOrders";
 import AdminProducts from "./components/Dashboard/AdminProducts";
 import Users from "./components/Dashboard/Users";
 import Contact from "./components/Home/Contact";
-import DashboardLayout from "./Layouts/Dashboard";
 
 function App() {
 	const [stripeApiKey, setStripeApiKey] = useState("");

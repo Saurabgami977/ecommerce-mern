@@ -1,37 +1,33 @@
 .ProductDetails {
 	width: 100vw;
 	height: 100vh;
-	max-width: 100%;
 	padding: 6vmax;
-	padding-top: 90px;
 	box-sizing: border-box;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-around;
 	background-color: rgb(214, 214, 214);
 }
 
 .leftBar {
-	padding: 2vmax;
-	/* border: 1px solid white; */
-	width: 100%;
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .carousel {
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	flex-direction: column;
 	max-width: 350px;
 }
 .rightBar {
-	width: 100%;
-	padding: 2vmax;
 	display: flex;
+	flex: 2;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: flex-start;
-	/* border: 1px solid white; */
 }
 
 .detailsBlock-1 > h2 {
@@ -41,7 +37,7 @@
 
 .detailsBlock-1 > p {
 	color: rgba(54, 54, 54, 0.582);
-	font: 200 0.6vmax cursive;
+	font: 200 0.8vmax "Roboto";
 }
 
 .detailsBlock-2 {
@@ -208,13 +204,14 @@
 @media screen and (max-width: 600px) {
 	.ProductDetails {
 		flex-direction: column;
+		align-items: center;
 		height: unset;
 		width: 100vw;
 	}
 
-	.ProductDetails > div:last-child {
-		border: 1px solid black;
-		width: 90vw;
+	.rightBar {
+		margin: 0;
+		padding: 0;
 	}
 
 	.detailsBlock-1 > h2 {

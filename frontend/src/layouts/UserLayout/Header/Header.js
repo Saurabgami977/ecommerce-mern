@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+// Packages Import
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
+
+// MUI Components Import
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,14 +21,9 @@ import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
-import {
-	clearErrors,
-	loadUser,
-	logoutUser,
-} from "../../../store/actions/userAction";
+
+// Actions
+import { clearErrors, logoutUser } from "../../../store/actions/userAction";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -37,6 +38,7 @@ const Header = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 
+	// User State
 	const { isAuthenticated, user, error } = useSelector(
 		(state) => state.userReducer,
 	);
@@ -103,28 +105,28 @@ const Header = () => {
 		});
 	}
 
-	//  Checking user login status in App.js
-	// useEffect(() => {
-	// 	location.pathname !== "/login" && dispatch(loadUser());
-	// }, [dispatch]);
-
+	// If any error => alert
 	useEffect(() => {
 		if (error) {
 			dispatch(clearErrors());
 		}
 	}, [error, dispatch]);
 
+	// If user is admin then dont render this Header
 	if (location.pathname.split("/")[1] === "admin") {
 		return;
 	}
 
 	return (
-		<AppBar position="fixed" color="primary">
+		<AppBar position="static" color="primary">
 			<Container maxWidth="xl">
 				<Toolbar disableGutters>
+					{/* LOGO For Larger Screens with a icon infront of it*/}
+					{/* ___ICON___ */}
 					<ShoppingBasketIcon
 						sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
 					/>
+					{/* ___LOGO___ */}
 					<Link to="/" style={{ textDecoration: "none" }}>
 						<Typography
 							variant="h6"
@@ -141,6 +143,8 @@ const Header = () => {
 							Saurav Store
 						</Typography>
 					</Link>
+
+					{/*  Hamburger Icon with mobile menu */}
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
 						<IconButton
 							size="large"
@@ -186,6 +190,8 @@ const Header = () => {
 					<ShoppingBasketIcon
 						sx={{ display: { xs: "none", md: "none", sm: "flex" }, mr: 1 }}
 					/>
+
+					{/* LOGO for Mobile screen */}
 					<Link to="/" style={{ textDecoration: "none" }}>
 						<Typography
 							variant="h5"
@@ -204,6 +210,8 @@ const Header = () => {
 							Saurav Store
 						</Typography>
 					</Link>
+
+					{/* Menu for large screens */}
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 						{pages.map((page, index) => (
 							<Link
@@ -220,6 +228,8 @@ const Header = () => {
 							</Link>
 						))}
 					</Box>
+
+					{/* Search Button - /search */}
 					<Link to="/search" style={{ textDecoration: "none", color: "white" }}>
 						<Button color="secondary" onClick={() => handleSearchModal()}>
 							Search
@@ -232,13 +242,17 @@ const Header = () => {
 							/>
 						</Button>
 					</Link>
+
+					{/* Cart Icon */}
 					<Link to="/cart">
 						<IconButton>
 							<ShoppingCartIcon sx={{ margin: "20px", color: "white" }} />
 						</IconButton>
 					</Link>
-					{/* {console.log(user?.avatar?.url)} */}
+
+					{/* User Avatar + Menu */}
 					<Box sx={{ flexGrow: 0 }}>
+						{/* Radical Icon - Avatar */}
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 								<Avatar
@@ -247,6 +261,8 @@ const Header = () => {
 								/>
 							</IconButton>
 						</Tooltip>
+
+						{/* Menus for user */}
 						<Menu
 							sx={{ mt: "45px" }}
 							id="menu-appbar"
@@ -263,6 +279,7 @@ const Header = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
+							{/* Render Seperate mennu for rach user role  */}
 							{isAuthenticated
 								? LoggedInUserSettings.map((setting, index) => (
 										<MenuItem key={index} onClick={setting.func}>

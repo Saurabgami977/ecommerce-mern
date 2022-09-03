@@ -1,8 +1,7 @@
 .Outerbox {
 	width: 100vw;
-	height: 100vh;
+	height: 70vh;
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 	align-items: center;
 	background-color: rgb(225, 225, 225);
@@ -64,10 +63,6 @@
 }
 
 @media screen and (max-width: 600px) {
-	.Outerbox {
-		padding-top: 10vmax;
-		justify-content: start;
-	}
 	.Outerbox > h2 {
 		font-size: 2.5vmax;
 	}

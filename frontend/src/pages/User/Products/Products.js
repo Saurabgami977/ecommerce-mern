@@ -6,12 +6,12 @@ import Pagination from "react-js-pagination";
 import { useParams } from "react-router-dom";
 import { Slider, Typography } from "@mui/material";
 
-import Loader from "../Layout/Loader/Loader";
-import ProductCard from "../Home/ProductCard";
-import { clearErrors, getProduct } from "../../store/actions/productAction";
-import "./css/Products.css";
-import MetaData from "../Layout/MetaData";
-import NotFound from "../Layout/NotFound/NotFound";
+import Loader from "../../../components/Layout/Loader/Loader";
+import ProductCard from "../../../components/Home/ProductCard";
+import { clearErrors, getProduct } from "../../../store/actions/productAction";
+import MetaData from "../../../components/Layout/MetaData";
+import NotFound from "../../../components/Layout/NotFound/NotFound";
+import "./Products.css";
 
 const categories = [
 	"Laptop",
@@ -66,6 +66,7 @@ const Products = () => {
 		<>
 			<div className="page">
 				<div className="filterBox">
+					<h2 className="filterHeading">Filter</h2>
 					<Typography>Price</Typography>
 					<Slider
 						value={price}

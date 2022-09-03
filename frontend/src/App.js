@@ -3,9 +3,13 @@ import { Route, Routes, useLocation, Navigate, Outlet } from "react-router-dom";
 import WebFont from "webfontloader";
 
 import "./App.css";
-import Home from "./components/Home/Home";
+
+// Pages
+import Home from "./pages/User/Home/Home";
+import Products from "./pages/User/Products/Products.js";
+
+//
 import ProductDetails from "./components/Product/ProductDetails.js";
-import Products from "./components/Product/Products.js";
 import Search from "./components/Product/Search.js";
 import LoginSignup from "./components/User/LoginSignup";
 import Profile from "./components/User/Profile";

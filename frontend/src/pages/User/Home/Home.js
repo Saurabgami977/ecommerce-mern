@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import Fade from "react-reveal/Fade";
 
-import MetaData from "../Layout/MetaData";
+import MetaData from "../../../components/Layout/MetaData";
 import "./Home.css";
-import ProductCard from "./ProductCard";
-import { clearErrors, getProduct } from "../../store/actions/productAction";
-import Loader from "../Layout/Loader/Loader";
+import ProductCard from "../../../components/Home/ProductCard";
+import { clearErrors, getProduct } from "../../../store/actions/productAction";
+import Loader from "../../../components/Layout/Loader/Loader";
 
 const Home = () => {
 	const alert = useAlert();

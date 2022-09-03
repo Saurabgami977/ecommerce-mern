@@ -4,12 +4,11 @@
 
 .orderDetailsContainer > h1 {
 	font: 300 3vmax "Roboto";
-	margin: 4vmax 0;
 	color: tomato;
 }
 
 .orderDetailsContainer {
-	padding: 5vmax;
+	padding: 2vmax 5vmax;
 	padding-bottom: 0%;
 }
 
@@ -67,12 +66,6 @@
 .orderDetailsCartItemsContainer > div > span {
 	font: 100 1vmax "Roboto";
 	color: #5e5e5e;
-}
-
-@media screen and (max-width: 1000px) {
-	.orderDetailsPage {
-		margin-top: 5vmax;
-	}
 }
 
 @media screen and (max-width: 600px) {

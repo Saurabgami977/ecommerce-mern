@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation, Navigate, Outlet } from "react-router-dom";
+import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import WebFont from "webfontloader";
 
 import "./App.css";
@@ -37,12 +37,9 @@ import Users from "./components/Dashboard/Users";
 import Contact from "./components/Home/Contact";
 import UserLayout from "./layouts/UserLayout";
 import AdminLayout from "./layouts/AdminLayout";
-import { loadUser } from "./store/actions/userAction";
+import { styled } from "@mui/material/styles";
 
 function App() {
-	const dispatch = useDispatch();
-	const location = useLocation();
-
 	const [stripeApiKey, setStripeApiKey] = useState("");
 	const { user } = useSelector((state) => state.userReducer);
 
@@ -51,13 +48,25 @@ function App() {
 		setStripeApiKey(data.stripeApiKey);
 	}
 
+	const BaseDesign = styled("div")({
+		display: "flex",
+		flexDirection: "column",
+		minHeight: "100%",
+		overflow: "hidden",
+		boxSizing: "border-box",
+	});
+
 	const ProtectedRoutes = () => {
 		if (user === undefined) {
 			return null;
 		}
 
 		if (user) {
-			return <Outlet />;
+			return (
+				<BaseDesign>
+					<Outlet />
+				</BaseDesign>
+			);
 		}
 
 		if (user === null) {
@@ -74,10 +83,6 @@ function App() {
 		});
 		getStripeApiKey();
 	}, [user]);
-
-	useEffect(() => {
-		location.pathname !== "/login" && dispatch(loadUser());
-	}, [dispatch]);
 
 	window.addEventListener("contextmenu", (e) => e.preventDefault());
 

@@ -12,7 +12,12 @@ import "./css/LoginSignup.css";
 import Loader from "../Layout/Loader/Loader";
 import MetaData from "../Layout/MetaData";
 
-import { clearErrors, login, register } from "../../store/actions/userAction";
+import {
+	clearErrors,
+	loadUser,
+	login,
+	register,
+} from "../../store/actions/userAction";
 
 const LoginSignup = () => {
 	const dispatch = useDispatch();
@@ -75,14 +80,17 @@ const LoginSignup = () => {
 	const redirect = location.search ? location.search.split("=")[1] : "/account";
 
 	useEffect(() => {
-		if (error) {
-			alert.error(error);
-			return dispatch(clearErrors);
-		}
 		if (isAuthenticated) {
 			navigate(redirect);
 		}
-	}, [error, alert, dispatch, redirect, isAuthenticated, navigate]);
+	}, [redirect, isAuthenticated, navigate, location.pathname]);
+
+	useEffect(() => {
+		if (error) {
+			alert.show(error);
+			dispatch(clearErrors());
+		}
+	}, [error, dispatch, alert]);
 
 	const switchTab = (e, tab) => {
 		if (tab === "login") {

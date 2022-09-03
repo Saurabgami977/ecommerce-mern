@@ -12,6 +12,7 @@ const BaseDesign = styled("div")({
 	flexDirection: "column",
 	minHeight: "100%",
 	overflow: "hidden",
+	boxSizing: "border-box",
 });
 
 const UserLayout = () => {

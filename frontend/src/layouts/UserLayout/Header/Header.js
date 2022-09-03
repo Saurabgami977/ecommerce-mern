@@ -23,7 +23,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 
 // Actions
-import { clearErrors, logoutUser } from "../../../store/actions/userAction";
+import {
+	clearErrors,
+	loadUser,
+	logoutUser,
+} from "../../../store/actions/userAction";
 
 const pages = [
 	{ name: "Home", to: "/" },
@@ -104,15 +108,16 @@ const Header = () => {
 			func: dashboard,
 		});
 	}
+	useEffect(() => {
+		location.pathname !== "/login" && dispatch(loadUser());
+	}, [dispatch]);
 
-	// If any error => alert
 	useEffect(() => {
 		if (error) {
 			dispatch(clearErrors());
 		}
 	}, [error, dispatch]);
 
-	// If user is admin then dont render this Header
 	if (location.pathname.split("/")[1] === "admin") {
 		return;
 	}

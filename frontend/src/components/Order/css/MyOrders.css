@@ -1,17 +1,8 @@
-/* body {
-	background-color: rgb(235, 235, 235);
-} */
-
 .myOrdersPage {
-	margin: 10vmax 0;
 	width: 100vw;
 	max-width: 100%;
 	padding: 0 7vmax;
 	box-sizing: border-box;
-	/* background-color: rgb(235, 235, 235); */
-	/* position: fixed;
-	top: 0;
-	left: 0; */
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -33,7 +24,6 @@
 
 .myOrdersTable div {
 	font: 300 1vmax "Roboto";
-	/* color: rgba(0, 0, 0, 0.678); */
 	border: none;
 }
 
@@ -62,7 +52,6 @@
 
 @media screen and (max-width: 600px) {
 	.myOrdersPage {
-		margin: 15vmax 0 10vmax 0;
 		padding: 0;
 		height: 93vh;
 	}

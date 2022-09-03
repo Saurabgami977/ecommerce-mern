@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "./SideBar";
 
 import { styled } from "@mui/material/styles";
+import { clearErrors, loadUser } from "../../store/actions/userAction";
+import { useAlert } from "react-alert";
 
 const BaseDesign = styled("div")({
 	display: "flex",
@@ -14,19 +16,29 @@ const BaseDesign = styled("div")({
 });
 
 const AdminLayout = () => {
-	const { user, loading } = useSelector((state) => state.userReducer);
+	const dispatch = useDispatch();
+	const alert = useAlert();
+	const { user, error, loading } = useSelector((state) => state.userReducer);
 
-	if (loading != "idle" && loading === false) {
-		// Return to login if user is undefined
-		if (user === undefined) {
-			return null;
+	useEffect(() => {
+		dispatch(loadUser());
+		if (error) {
+			alert.show(error);
+			dispatch(clearErrors());
 		}
+	}, [dispatch, error, alert]);
 
-		// Return to login if user is null
-		if (user === null) {
-			return <Navigate to="/login" />;
-		}
+	// Return to login if user is undefined
+	if (user === undefined) {
+		return null;
+	}
 
+	// Return to login if user is null
+	if (user === null) {
+		return <Navigate to="/login" />;
+	}
+
+	if (loading === false) {
 		// If user = admin render admin dashboard
 		if (user.role === "admin") {
 			return (

@@ -111,7 +111,6 @@ const Payment = () => {
 			setLoading(false);
 			payBtn.current.disabled = false;
 			alert.error(error);
-			console.log(error);
 		}
 	};
 

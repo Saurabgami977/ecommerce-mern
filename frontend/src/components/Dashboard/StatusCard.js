@@ -30,7 +30,6 @@ const StatusCard = ({ title, Icon, value, iconColor, to }) => {
 			color: iconColor,
 		},
 	};
-	console.log(iconColor);
 	return (
 		<Card elevation={3} style={styles.statusBar}>
 			<Link to={to} style={{ color: "black", textDecoration: "none" }}>

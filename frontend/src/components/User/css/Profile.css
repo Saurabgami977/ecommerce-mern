@@ -3,7 +3,7 @@
 	height: 100vh;
 
 	width: 100vw;
-	margin-top: 10%;
+	margin-top: 3vmax;
 	max-width: 100%;
 	background-color: white;
 	color: black;
@@ -90,7 +90,6 @@
 
 @media screen and (max-width: 600px) {
 	.profileContainer {
-		margin-top: 20%;
 		flex-direction: column;
 		height: 100vh;
 	}

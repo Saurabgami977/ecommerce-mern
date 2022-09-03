@@ -13,11 +13,11 @@
 }
 
 .MuiStepper-root {
-	margin-top: 10vmax;
+	margin-top: 1vmax;
 }
 
 @media screen and (max-width: 800px) {
 	.MuiStepper-root {
-		margin-top: 15vmax;
+		margin-top: 1vmax;
 	}
 }

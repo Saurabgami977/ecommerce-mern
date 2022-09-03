@@ -22,6 +22,7 @@ export const login = (email, password) => async (dispatch) => {
 
 		const { data } = await loginAPI(email, password);
 		dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+		localStorage.setItem("token", JSON.stringify(data.token));
 	} catch (error) {
 		dispatch({
 			type: LOGIN_FAIL,
@@ -38,6 +39,7 @@ export const register =
 			dispatch({ type: REGISTER_REQUEST });
 			const { data } = await registerAPI({ name, email, password, avatar });
 			dispatch({ type: REGISTER_SUCCESS, payload: data.user });
+			localStorage.setItem("token", JSON.stringify(data.token));
 		} catch (error) {
 			dispatch({
 				type: REGISTER_FAIL,
@@ -66,6 +68,7 @@ export const logoutUser = () => async (dispatch) => {
 	try {
 		await logoutUserAPI();
 		dispatch({ type: LOGOUT_SUCCESS });
+		localStorage.removeItem("token");
 	} catch (error) {
 		dispatch({
 			type: LOGOUT_FAIL,

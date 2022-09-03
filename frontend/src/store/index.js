@@ -1,24 +1,30 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-// Reducers
+// Product Reducers
 import {
 	newReviewReducer,
 	productDetailsReducer,
 	productReducer,
-} from "./store/reducers/productReducer";
-import { userReducer } from "./store/reducers/userReducer";
+} from "./reducers/productReducer";
+
+// User Reducer
+import { userReducer } from "./reducers/userReducer";
 import {
 	forgotPasswordReducer,
 	profileReducer,
-} from "./store/reducers/updateProfileReducer";
-import { cartReducer } from "./store/reducers/cartReducer";
+} from "./reducers/updateProfileReducer";
+
+// Order and Add to cart reducer
+import { cartReducer } from "./reducers/cartReducer";
 import {
 	myOrdersReducer,
 	newOrderReducer,
 	orderDetailsReducer,
-} from "./store/reducers/orderReducer";
-import { adminOrdersReducer } from "./store/reducers/adminOrdersReducer";
-import adminProductsReducer from "./store/reducers/adminProductsSlice";
+} from "./reducers/orderReducer";
+
+// Admin Reducers
+import { adminOrdersReducer } from "./reducers/adminOrdersReducer";
+import adminProductsReducer from "./reducers/adminProductsSlice";
 
 let initialState = {
 	cart: {
